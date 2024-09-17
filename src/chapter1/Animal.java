@@ -1,7 +1,7 @@
 package chapter1;
 
-//public class Animal {} // this is valid class declaration with an empty body
-//class Animal // note that the top-level type doesn't need to be declared public
+// public class Animal {} // this is a valid class declaration with an empty body
+// class Animal // note that the top-level type doesn't need to be declared public
 
 // the public class name has to match the file name
 public class Animal {
@@ -27,6 +27,6 @@ public class Animal {
     }
 }
 
-//public class Appliance {} // incorrect, only one public type can be defined per file
+// public class Appliance {} // incorrect, only one public type can be defined per file
 
 class Appliance {} // this is valid
