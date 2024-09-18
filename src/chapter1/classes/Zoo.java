@@ -1,4 +1,4 @@
-package chapter1;
+package chapter1.classes;
 
 //public class Animal {} // incorrect: there can only be one public class per file
 

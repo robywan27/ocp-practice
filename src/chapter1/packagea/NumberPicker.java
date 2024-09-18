@@ -1,4 +1,6 @@
-package chapter1;
+package chapter1.packagea;
+
+import chapter1.classes.Animal;
 
 import java.util.Random; // import statement tells the compiler where to find the class Random
 import java.util.*; // can use * wildcard to import all classes in package

@@ -1,4 +1,4 @@
-package chapter1;
+package chapter1.classes;
 
 // public class Animal {} // this is a valid class declaration with an empty body
 // class Animal // note that the top-level type doesn't need to be declared public
