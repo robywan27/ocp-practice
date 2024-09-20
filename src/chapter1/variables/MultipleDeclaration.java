@@ -1,4 +1,4 @@
-package variables;
+package chapter1.variables;
 
 public class MultipleDeclaration {
     String s1, s2, s3; // type must be the same

@@ -1,4 +1,4 @@
-package variables;
+package chapter1.variables;
 
 /*Local variable: a variable defined within a constructor, method or initializer block*/
 public class LocalVariable {
@@ -9,7 +9,7 @@ public class LocalVariable {
         //    x = 7; // invalid
 
         int a;
-//    int x = a; // local variables have to be initializes before use
+//    int x = a; // local chapter1.variables have to be initializes before use
     }
 
     public static void main(String[] args) {

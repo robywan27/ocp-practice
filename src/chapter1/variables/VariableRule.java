@@ -1,4 +1,4 @@
-package variables;
+package chapter1.variables;
 
 public class VariableRule {
     String zooName = "Initializing a variable"; // initializing a variable, i.e. assigning a value to teh variable

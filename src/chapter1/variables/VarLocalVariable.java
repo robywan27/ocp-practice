@@ -1,7 +1,7 @@
-package variables;
+package chapter1.variables;
 
 /*Local variable type inference
-*  - It's applicable only for local variables
+*  - It's applicable only for local chapter1.variables
 *  - The compiler infers the type for you
 * */
 public class VarLocalVariable {

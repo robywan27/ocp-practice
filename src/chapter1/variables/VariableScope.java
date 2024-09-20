@@ -1,4 +1,4 @@
-package variables;
+package chapter1.variables;
 
 public class VariableScope {
     /*Class variable scope: from declaration until the program ends*/

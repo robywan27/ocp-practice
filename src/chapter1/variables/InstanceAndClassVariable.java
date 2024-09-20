@@ -1,4 +1,4 @@
-package variables;
+package chapter1.variables;
 
 public class InstanceAndClassVariable {
 
@@ -26,7 +26,7 @@ class Person {
     * */
     String name; // doesn't need to be initialized: default value is assigned. Here it's null
 
-    /*Class variables
+    /*Class chapter1.variables
     * It is defined at the class level and shared among all instances of the class.
     * They are marked by the static keyword.
     * It can be publicly accessible outside the class and doesn't need an instance to be used

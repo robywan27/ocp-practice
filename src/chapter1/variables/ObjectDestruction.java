@@ -1,4 +1,4 @@
-package variables;
+package chapter1.variables;
 
 /*
 * - Garbage collector: process on the JVM that looks for objects that aren't needed anymore
