@@ -5,9 +5,9 @@ package chapter1;
     // Once the program ends, everything is removed, including the heap. GC is only useful while the program runs
 
 
-// Exercise 7
-// numForks and numKnives vars are not referenced in the string block
 public class ReviewExercises {
+    // Exercise 7
+    // numForks and numKnives vars are not referenced in the string block
     private int numForks;
 
     public static void main(String[] args) {
@@ -16,6 +16,7 @@ public class ReviewExercises {
                 "# forks = " + numForks +
                 "# knives = " + numKnives +
                 # cups = 0""");
+
 
         // prints things from exercises below in class T
         T t = new T();
@@ -40,8 +41,9 @@ class T {
 
     // Exercise 14
     //int numGrains = 2.0; // does not compile, there is no implicit casting happening
-    byte b = 12;
-    short sh = 12;
+    byte b = 12; // automatically down-casted from int value
+    short sh = 12; // automatically down-casted from int value
+//    short sh2 = 12L; // invalid
     long l = 12;
     //    int i = 1L; // invalid - bigger value than container can accept
 //    int i = 0f; // invalid
