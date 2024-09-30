@@ -22,7 +22,7 @@ public class PatternMatching {
         }
     }
 
-    /*The compiler applies flow scoping wit pattern matching
+    /*The compiler applies flow scoping with pattern matching
     * Flow scoping: variable is only in scope when the compiler can definitely determine its type.
     * Flow scoping is determined based on the branching and flow of the program.
     * It is not hierarchical! Instance, class and local scoping aren't applicable

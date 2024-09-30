@@ -26,7 +26,7 @@ public class NestedLoop {
             System.out.println();
         }
 
-        // something with nexted while statements
+        // something with nested while statements
         int hungryHippo = 8;
         while (hungryHippo > 0) {
             do {
