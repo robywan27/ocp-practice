@@ -7,7 +7,7 @@ import java.util.Arrays;
 * It is an ordered list and can contain duplicates.
 * Examples: a String is implemented using an array of characters, with methods to deal with characters specifically
 * */
-public class Array {
+public class ArrayAPI {
     public static void main(String[] args) {
         // Creation
 
