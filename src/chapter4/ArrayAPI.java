@@ -1,6 +1,6 @@
 package chapter4;
 
-import java.util.Arrays;
+import java.util.Arrays; // convenient import for operations on arrays
 
 /*
 * Are of memory on the heap with space for a designated number of elements.
@@ -119,7 +119,7 @@ public class ArrayAPI {
         System.out.println(Arrays.binarySearch(nn, 2)); // 0
         System.out.println(Arrays.binarySearch(nn, 8)); // 3
         System.out.println(Arrays.binarySearch(nn, 1)); // -1 <- 0 - 1
-        System.out.println(Arrays.binarySearch(nn, 3)); // -2 <- -1 - -1
+        System.out.println(Arrays.binarySearch(nn, 3)); // -2 <- -1 - 1
         System.out.println(Arrays.binarySearch(nn, 9)); // -5
 
 
@@ -152,8 +152,7 @@ public class ArrayAPI {
         System.out.println(Arrays.compare(new String[] {"a"}, new String[] {"aa"})); // -1 - first element is a
         // prefix of the second
         System.out.println(Arrays.compare(new String[] {"a"}, new String[] {"A"})); // positive number - uppercase is
-        // smaller than
-        // lowercase
+        // smaller than lowercase
         System.out.println(Arrays.compare(new String[] {"a"}, new String[] {"1"})); // positive number - in Strings/characters,
         // numbers are smaller than letters
 

@@ -10,7 +10,7 @@ public class MathAPI {
 
 
         // rounding
-        int low = Math.round(123.45f);
+        int low = Math.round(123.45f); // round(float) returns an int
         long high = Math.round(123.50);
 //        int high = Math.round(123.50); // round(double) returns a long
         System.out.println(low); // 123 - rounded down

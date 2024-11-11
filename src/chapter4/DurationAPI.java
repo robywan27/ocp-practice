@@ -3,7 +3,7 @@ package chapter4;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 
-// used for smaller units of time than Period, i.e. number of days, hours, minutes, seconds, nanoseconds.
+// used for smaller units of time than Period, i.e. number of days, hours, minutes, seconds, nanoseconds
 // it's therefore compatible with objects containing time, so not LocalDate
 // A day is stored in hours instead of days
 public class DurationAPI {

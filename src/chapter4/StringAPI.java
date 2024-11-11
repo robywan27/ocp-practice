@@ -142,6 +142,10 @@ public class StringAPI {
 
         // format values: format(), formatted()
         // format() is a static method on String, so you call it as String.format(...)
+        // %s for String values
+        // %d for integer values (int, long)
+        // %f foe floating-point values (float, double)
+        // %n inserts a line break, using system-dependent line separator
         var surname = "Moss";
         var orderId = 5;
         System.out.println(String.format("Hello %s, order %d is ready", surname, orderId));
@@ -149,6 +153,8 @@ public class StringAPI {
         var score = 90.25;
         var total = 100;
         System.out.println("%s:%n   Score: %f out of %d".formatted(surname, score, total));
+        // mixing data types may cause exceptions at runtime!
+        //        var invalidStr = "Food: %d tons".formatted(2.0);
         var pi = 3.14159265359;
         System.out.format("[%f]", pi); // [3.141593] prints 6 digits after . by default; last digit is rounded
         System.out.format("[%12.8f]", pi); // [  3.14159265] prints 8 digits after ., and total length of output is 12
