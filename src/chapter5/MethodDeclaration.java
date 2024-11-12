@@ -21,7 +21,7 @@ public class MethodDeclaration {
     /*
     * 1. Access modifiers
     * - private - (method) accessible only within class
-    * - package access - no keyword, accessible by class within package
+    * - package access (no keyword) - accessible by classes within package
     * - protected - accessible in package and subclasses
     * - public - accessible everywhere
     * */
@@ -48,7 +48,7 @@ public class MethodDeclaration {
     * */
     String hike(int a) {
         if (1 < 2) return "orange"; // needs a return statement for false condition. Doesn't matter if condition
-        // always evaluates!
+        // always evaluates like in this case!
         return "apple";
     }
 
