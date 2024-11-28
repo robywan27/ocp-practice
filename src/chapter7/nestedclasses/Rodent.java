@@ -1,4 +1,4 @@
-package chapter7;
+package chapter7.nestedclasses;
 
 public class Rodent {}
 

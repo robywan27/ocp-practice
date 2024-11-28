@@ -1,4 +1,4 @@
-package chapter7;
+package chapter7.nestedclasses;
 
 public class Apartment extends Home {
     public static void main(String[] args) {
