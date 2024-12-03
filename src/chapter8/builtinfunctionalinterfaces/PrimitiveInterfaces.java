@@ -3,8 +3,8 @@ package chapter8.builtinfunctionalinterfaces;
 /*
 * Functional interfaces provided only to types double, int, long, except BooleanSupplier for boolean
 *
-* Supplier: DoubleSupplier, IntSupplier, LongSupplier
-* <Type>Consumer
+* Supplier: DoubleSupplier, IntSupplier, LongSupplier, BooleanSupplier
+* <Type>Consumer (Type is any one of Int, Double, Long)
 * <Type>Predicate
 * <Type>Function<R> with return type R
 * <Type>UnaryOperator
@@ -12,7 +12,7 @@ package chapter8.builtinfunctionalinterfaces;
 *
 * To<Type>Function
 * To<Type>BiFunction
-* Obj<Type>Consumer
+* Obj<Type>Consumer - takes 2 params of type (T, int/double/long)
 * DoubleToIntFunction
 * LongToDoubleFunction
 * ...
