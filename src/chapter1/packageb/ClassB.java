@@ -5,6 +5,6 @@ import chapter1.packagea.ClassA; // need to import ClassA because it belongs in 
 public class ClassB {
     public static void main(String[] args) {
         ClassA a;
-        System.out.println("heyo");
+        System.out.println("B");
     }
 }

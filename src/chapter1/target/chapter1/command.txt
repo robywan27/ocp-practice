@@ -1,0 +1,9 @@
+Define where to place compiled .class files
+
+javac -d target packagea/ClassA.java packageb/ClassB.java
+
+
+Execute programs given passed classpath (where .class files are located)
+
+java -cp target chapter1/packagea/ClassA
+java -cp target chapter1/packageb/ClassB

@@ -25,16 +25,21 @@ public class PrimitiveType {
         int i = 1_234_567_890; // between -2,147,483,648 and 2,147,483,647
         System.out.println(i);
 
+//        long l = 12_345_678_900_000; this doesn't compile because the number is larger than what an int (the literal type) can store
         // add an L or l to the literal. L is preferred
         long l = 12_345_678_900_000L; // between -2^63 and 2^63 - 1
         System.out.println(l);
 
-        // add f to the literal
-        float f = 1233.454f; // 32-bit floating point value
+        float f = 12; // can just write a literal and assign it to a float; because int is smaller than float, it will be automatically casted at assignment
         System.out.println(f);
+        // add f to the literal
+        float fl = 1233.454f; // 32-bit floating point value
+        System.out.println(fl);
 
-        double d = 12345.23; // 64-bit floating point value
+        double d = 123; // same thing as with float above
         System.out.println(d);
+        double db = 12345.23; // 64-bit floating point value
+        System.out.println(db);
 
         /*Other bases
         * */

@@ -15,17 +15,17 @@ public class NumericPromotion {
         // 1.
         int x = 1;
         long y = 33;
-        var z = x * y; // x promoted to long, z has type long
+        long z = x * y; // x promoted to long, z has type long
 
         // 2.
         int i = 2;
         float f = 2f;
-        var fl = i + f; // i is promoted to float, fl has type float
+        float fl = i + f; // i is promoted to float, fl has type float
 
         // 3.
         short a = 10;
         short b = 3;
-        var c = a + b; // a and b are promoted to int, c has type int
+        int c = a + b; // a and b are promoted to int, c has type int
 //        short d = a + b; // invalid
 
         short sh = 3;
@@ -33,14 +33,14 @@ public class NumericPromotion {
 
 
         short p = 14;
-        float q = 13;
-        double r = 20;
+        float q = 13; // note: this is a valid assignment! Can assign (int) literal to any type of numeric variable
+        double r = 20; // note: this is a valid assignment! Can assign (int) literal to any type of numeric variable
         /*
             3. p is promoted to int
             2. p is promoted to float
             1. (p * q) result is promoted to double
             4. s has type double
          */
-        var s = p * q / r;
+        double s = p * q / r;
     }
 }
