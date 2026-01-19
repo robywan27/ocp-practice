@@ -28,7 +28,7 @@ public class SwitchExpression {
             case 4, 5, 6 -> System.out.println("Spring");
             case 7, 8, 9 -> System.out.println("Summer");
             case 10, 11, 12 -> System.out.println("Fall");
-        } // in this case semicolon is not required because no value is returned
+        } // this is a switch statement; in this case semicolon is not required because no value is returned
     }
 
     public static void main(String[] args) {

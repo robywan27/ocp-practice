@@ -54,5 +54,23 @@ public class ForLoop {
         for (int j = 0; j < 5; j++)
             System.out.println(j + " ");
 //        System.out.println(j);
+
+        // each component in a for loop is optional
+        int it = 0;
+        for(; it < 10; it++) System.out.print(it);
+//        for(int it2 = 0; ; it++) System.out.print(it);
+//        for (int it3 = 0; it3 < 10; ) System.out.print(it3 + " ");
+        int jj = 0;
+//        for(; ; jj++) System.out.print(jj + " ");
+        // ... and so on
+
+        // any data type is permitted
+        System.out.println();
+        for (double d = 0; d < 4; d++) System.out.println(d);
+        for (boolean b = false; !b; b = true) System.out.println(b);
+        for(String s = ""; s.length() < 10; s += "0") System.out.println(s);
+        class Dolphin {}
+        Dolphin dolphin2 = new Dolphin();
+        for (Dolphin dolphin1 = new Dolphin(); dolphin1 != dolphin2; dolphin1 = dolphin2) {}
     }
 }

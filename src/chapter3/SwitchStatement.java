@@ -39,9 +39,9 @@ public class SwitchStatement {
 
     public static void pickAnimal(int animal) {
         switch (animal) {
-            case 0, 1:
+            case 0, 1 -> // also possible to use arrow notation; if you use it then you must define every clause with it
                 System.out.println("Lion"); // comma-separated case values
-            case 2:
+            case 2 ->
                 System.out.println("Giraffe"); // this is always called because there is no break in the previous
                 // case statement
         }

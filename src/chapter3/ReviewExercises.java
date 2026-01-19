@@ -191,6 +191,14 @@ public class ReviewExercises {
         if (true) ; // note that this compiles!
 
 
+        // 22
+        var tailFeathers = 3;
+        switch (tailFeathers) {
+            case 1: System.out.println("3 " + tailFeathers);
+            case 2: case 3: default: System.out.println("5 " + tailFeathers);
+        }
+
+
         /*exercise 25*/
         String instrument = "violin";
         final String CELLO = "cello";
