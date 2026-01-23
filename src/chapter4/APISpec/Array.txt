@@ -13,6 +13,7 @@ initialization
         String[][] rectangle = new String[3][2];
         String[] rectangle[] = {{1,2}, {3,4}, {5,6};
         String asymmetric[][] = {{1,2,3}, {4}, {5,6}};
+        int[][] scores = new int[5][];
 
 equality
     arr1.equals(arr2); // reference equality, same as arr1 == arr2

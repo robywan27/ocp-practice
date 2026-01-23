@@ -21,6 +21,11 @@ public class ReviewExercises {
         System.out.println(z); // 2022-03-13T03:15-04:00[US/Eastern]
         System.out.println(z2); // 2022-11-06T02:15-05:00[US/Eastern]
 
+        // 4.
+        var s = "Hello";
+        var t = new String(s); // valid way to instantiate a String object
+        System.out.println(s == t); // false, different references
+        System.out.println(t.intern() == s); // true, they point to the same object in the string pool
 
         // exercise 15
         var arr = new String[]{"PIG", "pig", "123"};
@@ -49,10 +54,10 @@ public class ReviewExercises {
 
 
         // exercise 20
-        var d = LocalDate.of(2022, Month.MARCH, 13);
-        var t = LocalTime.of(1, 30);
+        var da = LocalDate.of(2022, Month.MARCH, 13);
+        var ti = LocalTime.of(1, 30);
         var zo = ZoneId.of("US/Eastern");
-        var dt1 = ZonedDateTime.of(d, t, zo);
+        var dt1 = ZonedDateTime.of(da, ti, zo);
         var dt2 = dt1.plus(1, ChronoUnit.HOURS);
         System.out.println(dt1); // 2022-03-13T01:30-05:00[US/Eastern]
         System.out.println(dt2); // 2022-03-13T03:30-04:00[US/Eastern]
@@ -67,7 +72,6 @@ public class ReviewExercises {
 
 
         // exercise 22
-        var da = LocalDate.of(2022, Month.APRIL, 30);
-        System.out.println(da.getDayOfMonth()); // it is a valid method; something like date.getDay() doesn't exist
+        System.out.println(LocalDate.of(2022, Month.APRIL, 30).getDayOfMonth()); // it is a valid method; something like date.getDay() doesn't exist
     }
 }

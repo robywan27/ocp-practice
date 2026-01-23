@@ -48,6 +48,7 @@ public non-static methods
     conversion methods
         from LocalDate
             LocalDateTime atStartOfDay()
+            LocalDateTime atTime(LocalTime time)
             LocalDateTime atTime(int hour, int minute[, ...])
         from LocalTime
             LocalDateTime atDate(LocalDate date)
