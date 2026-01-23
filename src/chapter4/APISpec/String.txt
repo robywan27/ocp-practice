@@ -1,0 +1,72 @@
+initialization
+    var s = new String("abc"); // regular reference type initialization (note: this explicitly creates a new object in the string pool)
+    var s = "abc"; // special init for Strings
+    var block = """
+        abc"""; // special way to define a String block
+
+equality
+    s1.equals(s2); // checks content of strings
+
+concatenation: + operator
+
+public non-static methods
+
+    return char
+        charAt(int index)
+            exception: if index >= length() or index < 0
+
+    return int
+        length()
+
+        codePointAt(int index) and similar methods (codePointBefore, codePointCount)
+
+        indexOf(char ch)    int indexOf(char ch, int beginIndex)     int indexOf(char ch, int beginIndex, int endIndex)
+        indexOf(String str)     int indexOf(String str, int beginIndex)    int indexOf(String str, int beginIndex, int endIndex)
+            notes: returns -1 if not found
+            exception: if beginIndex < 0, endIndex > length(), or beginIndex > endIndex
+
+    return boolean
+        equals(Object obj)
+        equalsIgnoreCase(String str)
+
+        startsWith(String prefix)   boolean startsWith(String prefix, int fromIndex)
+        endsWith(String suffix)
+        contains(CharSequence seq)
+
+        isEmpty()
+        isBlank()
+
+    return String
+        substring(int index)
+        substring(int beginIndex, int endIndex)
+            exception: if beginIndex < 0, endIndex > length(), or beginIndex > endIndex
+
+        toUpperCase()
+        toLowerCase()
+
+        replace(char oldChar, char newChar)
+        replace(CharSequence target, CharSequence replacement)
+
+        strip()
+        trim()
+        stripLeading()
+        stripTrailing()
+
+        indent(int numberOfSpaces)
+        stripIndent()
+            notes:
+                indent:
+                    - adds/removes spaces at the beginning of each line (removes all it can find)
+                    - normalizes existing line breaks to \n
+                    - adds line breaks to end if needed
+                stripIndent:
+                    - removes same number of leading spaces from all lines until there is a non-whitespace character to the left
+                    - normalizes existing line breaks to \n
+                    - DOES NOT add line breaks to the end
+
+        formatted(Object... args)
+
+
+public static methods
+    return String
+        format(String format, Object... args)       format(Locale locale, String format, Object... args)

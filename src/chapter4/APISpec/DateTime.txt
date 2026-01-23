@@ -1,0 +1,105 @@
+import java.time.*
+
+initialization (public static factory methods)
+    LocalDate.now()
+    LocalTime.now()
+    LocalDateTime.now()
+    ZonedDateTime.now()
+
+
+    LocalDate.of(int year, int month, int days)
+    LocalDate.of(int year, Month month, int days)
+
+    LocalTime.of(int hour, int minute)
+    LocalTime.of(int hour, int minute, int second)
+    LocalTime.of(int hour, int minute, int second, int nano)
+
+    LocalDateTime.of(LocalDate date, LocalTime time)
+    LocalDateTime.of(...) - all combinations of LocalDate and LocalTime
+
+    ZonedDateTime.of(LocalDateTime dateTime, ZoneId zone)
+    ZonedDateTime.of(LocalDate date, LocalTime time, ZoneId zone)
+    ZonedDateTime.of(int year, int month, int dayOfMonth, int hour, int minute, int second, int nano, ZoneId zone)
+    ...
+        note: can't pass Month enum
+
+public non-static methods
+    LocalDate plusDays(long days)
+    LocalDate plusWeeks(long weeks)
+    LocalDate plusMonths(long months)
+    LocalDate plusYears(long years)
+    LocalDate minusYears(long years)
+    ...
+    LocalDate withYear(long years)
+    LocalDate withDayOfYear(long days)
+    LocalDate withMonth(long months)
+    LocalDate withDayOfMonth(long days)
+
+    LocalTime minusDays(long days)
+    LocalTime plusHours(long hours)
+    LocalTime plusMinutes(long minutes)
+    LocalTime minusSeconds(long seconds)
+    ...
+    LocalTime withHour(long hours)
+    LocalTime withMinute(long minutes)
+    LocalTime withSecond(long seconds)
+    LocalTime withNano(long nanos)
+
+    conversion methods
+        from LocalDate
+            LocalDateTime atStartOfDay()
+            LocalDateTime atTime(int hour, int minute[, ...])
+        from LocalTime
+            LocalDateTime atDate(LocalDate date)
+        from LocalDateTime
+            ZonedDateTime atZone(ZoneId zone)
+
+
+Periods
+    String representation
+        P1Y3M5D
+
+    public static factory methods
+        ofYears(int years)
+        ofMonths(int months)
+        ofWeeks(int weeks)
+        ofDays(int days)
+        of(int years, int months, int days)
+
+    public static methods
+        between(LocalDate date1, LocalDate date2)
+
+    date methods accepting period
+        LocalDate plus(Period period)
+        LocalDateTime minus(Period period)
+        ZonedDateTime plus(Period period)
+        ...
+
+Durations
+    String representation
+        PT23H50M10S
+
+    public static factory methods
+        of(long amount, ChronoUnit unit)
+        ofDays(long days)
+        ofHours(long hours)
+        ofMinutes(long minutes)
+        ofSeconds(long seconds)
+        ofMillis(long millis)
+        ofNanos(long nanos)
+
+    public static methods (with ChronoUnit)
+        ChronoUnit.between(LocalTime time1, LocalTime time2)
+
+    time methods accepting duration
+        LocalTime plus(Duration duration)
+        LocalDateTime minus(Duration duration)
+        ZonedDateTime plus(Duration duration)
+        ...
+
+Instant
+    static factory methods
+        now()
+
+    non-static method from ZonedDateTime
+        toInstant()

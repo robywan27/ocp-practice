@@ -1,0 +1,35 @@
+initialization
+    var sb = new StringBuilder();
+    var sb = new StringBuilder("abc");
+    var sb = new StringBuilder(10); // initial capacity; can increase the size unlike arrays
+
+equality
+    sb1.equals(sb2); // reference equality, same as sb1 == sb2
+
+public non-static
+    non-state mutating (because they don't return a reference to itself)
+        String substring(int fromIndex, int endIndex)
+            exception: if beginIndex < 0, endIndex > length(), or beginIndex > endIndex
+
+        int length()
+
+        char charAt(int index)
+
+    state mutating - return StringBuilder
+        append(String str)
+
+        appendCodePoint(int codePoint)  + codePointAt(), ... from String
+
+        insert(int offset, String str)
+            exception: when offset > sb.length()
+
+        delete(int fromIndex, int endIndex)
+            ! note: no exception when endIndex > sb.length()
+            exception: when fromIndex > sb.length()
+        deleteCharAt(int index)
+            exception: when index > sb.length()
+
+        replace(int fromIndex, int endIndex, String newString)
+            note: like delete(), no exception when endIndex > sb.length()
+
+        reverse()

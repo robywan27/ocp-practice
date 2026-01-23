@@ -1,7 +1,6 @@
 package chapter4;
 
-import java.time.LocalTime;
-import java.time.Period;
+import java.time.*;
 
 public class PeriodAPI {
     public static void main(String[] args) {
@@ -19,6 +18,10 @@ public class PeriodAPI {
         // chaining methods isn't allowed, because they are static methods
         var wrong = Period.ofYears(3).ofWeeks(1); // equivalent to assigning Period.ofWeeks(1)
         System.out.println(wrong); // P7D
+
+        LocalDate.now().plus(fortnightly);
+        LocalDateTime.now().plus(fortnightly);
+        ZonedDateTime.now().minus(fortnightly);
 
         // Period can be used only with objects containing a date, so it doesn't work with LocalTime
         var time = LocalTime.of(12, 5);

@@ -64,10 +64,14 @@ public class StringBuilderAPI {
         sb4.insert(7, "-"); // animals-
         sb4.insert(0, "-"); // -animals-
         sb4.insert(4, "-"); // -ani-mals-
+        System.out.println(sb4);
+//        sb4.insert(20, "-"); // exception
+        System.out.println(sb4);
         
         
         // delete data
         // end index is exclusive
+        sb4.delete(10, 16); // --mals-
         sb4.delete(1, 4); // --mals-
 //        sb4.deleteCharAt(7);
         sb4.deleteCharAt(5); // --mal-

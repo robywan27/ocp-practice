@@ -1,5 +1,8 @@
 package chapter4;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 public class MathAPI {
     public static void main(String[] args) {
         // minimum and maximum
@@ -42,5 +45,15 @@ public class MathAPI {
         // generate random numbers
         double num = Math.random();
         System.out.println(num); // random double between 0 and 1 (exclusive)
+
+        var bi = BigInteger.valueOf(123456789)
+                .add(BigInteger.ONE)
+                .subtract(BigInteger.TEN)
+                .multiply(BigInteger.ZERO)
+                .divide(BigInteger.TEN)
+                .max(BigInteger.ONE);
+        var bd = BigDecimal.valueOf(123456789.00);
+        System.out.println(bi);
+        System.out.println(bd);
     }
 }

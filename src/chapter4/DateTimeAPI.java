@@ -40,6 +40,7 @@ public class DateTimeAPI {
         var zoned1 = ZonedDateTime.of(dateTime1, zone);
         var zoned2 = ZonedDateTime.of(date1, time1, zone);
         var zoned3 = ZonedDateTime.of(2022, 1, 20, 7, 30, 45, 200_000, zone);
+//        var zoned4 = ZonedDateTime.of(2022, 1, Month.FEBRUARY, 7, 30, 45, 200_000, zone); can't pass month enum here
 
 
         // manipulate dates and times
@@ -72,6 +73,26 @@ public class DateTimeAPI {
 
 //        date.plusMinutes(10); // LocalDate does not contain time
 
+        LocalDate copiedDate = date.withYear(2022).withMonth(5).withDayOfMonth(30);
+        LocalDate copiedOtherDate = date.withYear(2022).withDayOfYear(120);
+        LocalTime copiedTime = time.withHour(0).withMinute(0).withSecond(0).withNano(0);
+        System.out.println(copiedDate);
+        System.out.println(copiedOtherDate);
+        System.out.println(copiedTime);
+
+        // conversion methods
+        LocalDateTime startOfDay = LocalDate.of(2022, Month.MARCH, 13)
+                .atStartOfDay();
+        LocalDateTime dateTimeFromDate = LocalDate.of(2022, Month.MARCH, 13)
+                .atTime(23, 59, 59);
+        LocalDateTime dateTimeFromTime = LocalTime.of(23, 59, 59)
+                .atDate(LocalDate.of(2022, Month.MARCH, 13));
+        ZonedDateTime zonedFromDateTime = dateTimeFromDate
+                .atZone(ZoneId.of("US/Eastern"));
+        System.out.println(startOfDay);
+        System.out.println(dateTimeFromDate);
+        System.out.println(dateTimeFromTime);
+        System.out.println(zonedFromDateTime);
 
         // daylight saving time
         // in March, time springs forward from 1:59 a.m. to 3:00 a.m.

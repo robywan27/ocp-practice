@@ -13,6 +13,8 @@ public class StringPool {
         System.out.println(x == y); // true - "Hello World" is a literal and is stored in the pool, so x and y point
         // to the same location in memory
 
+        System.out.println(x == y.toString()); // true
+
         var z = " Hello World".trim();
         System.out.println(x == z); // false - String z is computed at runtime, therefore a new String object is created
         System.out.println(x.equals(z)); // true

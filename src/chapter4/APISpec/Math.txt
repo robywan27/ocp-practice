@@ -1,0 +1,32 @@
+public STATIC methods
+    double min(double a, double b)
+    float min(float a, float b)
+    long min(long a, long b)
+    int min(int a, int b)
+
+    double max(double a, double b)
+    float max(float a, float b)
+    long max(long a, long b)
+    int max(int a, int b)
+
+    long round(double num)
+    int round(float num)
+        note: round up for .5 and higher; note signatures
+
+    double ceil(double num)
+    double floor(double num)
+
+    double pow(double number, double exponent)
+
+    double random()
+
+    BigInteger.valueOf(long n)
+
+    BigDecimal.valueOf(long n)
+    BigDecimal.valueOf(double n)
+
+public non-static methods returning BigInteger, BigDecimal
+    add(BigInteger n)
+    divide(BigDecimal n)
+    max(BigDecimal n)
+    ....

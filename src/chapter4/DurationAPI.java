@@ -36,5 +36,9 @@ public class DurationAPI {
         System.out.println(ChronoUnit.HOURS.between(one, two)); // 1
         System.out.println(ChronoUnit.MINUTES.between(one, two)); // 75
         System.out.println(one.truncatedTo(ChronoUnit.HOURS)); // 05:00
+
+        LocalTime.now().plus(hourly);
+        LocalDateTime.now().minus(hourly);
+        ZonedDateTime.now().minus(hourly);
     }
 }

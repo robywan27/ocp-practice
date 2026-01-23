@@ -53,6 +53,7 @@ public class StringAPI {
         System.out.println(name.indexOf("al")); // 4
         System.out.println(name.indexOf('a', 4));  // 4
         System.out.println(name.indexOf("al", 5)); // -1, no exception thrown when match isn't found
+//        System.out.println(name.indexOf('a', 4, 3)); // exception
 
 
         // substring: substring()
@@ -88,6 +89,7 @@ public class StringAPI {
         System.out.println("abc".endsWith("l")); // false
         System.out.println("abc".contains("bc")); // true
         System.out.println("abc".contains("B")); // false
+        System.out.println("abc".contains(new StringBuilder("ab"))); // true; StringBuilder implements the CharSequence interface
 
 
         // replace values: replace()

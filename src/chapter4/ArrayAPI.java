@@ -111,7 +111,7 @@ public class ArrayAPI {
 
 
         // searching (binary search)
-        // if array is sorted
+        // if array is sorted (ASCENDING only):
         //   found -> index of match
         //   not found -> negated index where element should be inserted - 1
         // not sorted -> undefined result
@@ -122,8 +122,16 @@ public class ArrayAPI {
         System.out.println(Arrays.binarySearch(nn, 3)); // -2 <- -1 - 1
         System.out.println(Arrays.binarySearch(nn, 9)); // -5
 
+        int[] descending = {8, 6, 4, 2};
+        System.out.println(Arrays.binarySearch(descending, 2)); // undefined result
+        System.out.println(Arrays.binarySearch(descending, 4)); // undefined result
+        System.out.println(Arrays.binarySearch(descending, 5)); // undefined result
+
 
         // comparing
+
+        System.out.println(Arrays.equals(new int[] {1}, new int[] {1, 2})); // false - different lengths
+        System.out.println(Arrays.equals(new int[] {1, 3}, new int[] {1, 2})); // false - different values
 
         /*
         1. compare()
