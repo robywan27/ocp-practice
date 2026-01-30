@@ -10,11 +10,13 @@ public enum Season {
 class SeasonTester {
     public static void main(String[] args) {
         Season spring = Season.SPRING;
-        switch (spring) {
-            case WINTER -> System.out.println("Winter"); // not Season.WINTER!
-            case SPRING -> System.out.println("Spring");
-            case SUMMER -> System.out.println("Summer");
-            case FALL -> System.out.println("Fall");
-        }
+        System.out.println(
+                switch (spring) {
+                    case Season.WINTER -> "It's cold!"; // only from version 21!
+                    case SPRING -> "Flowers bloom!";
+                    case SUMMER -> "Time for the beach!";
+                    case FALL -> "Leaves fall!";
+                }
+        );
     }
 }

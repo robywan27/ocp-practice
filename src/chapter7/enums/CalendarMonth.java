@@ -1,6 +1,9 @@
 package chapter7.enums;
 
 public enum CalendarMonth implements Festive { // can implement an interface
+//    protected static final String description = "Months of the year"; // doesn't compile
+
+    // enum values must be at the top of the enum!
     JANUARY {
         public int getNumberOfDays() { return 31; } // implement method getNumberOfDays()
         public boolean isHoliday() {
@@ -27,6 +30,9 @@ public enum CalendarMonth implements Festive { // can implement an interface
 //    public boolean isHoliday() {
 //        return false;
 //    }
+
+    protected static final String description = "Months of the year";
+    protected void doNothing() {}
 }
 
 interface Festive { boolean isHoliday(); }
