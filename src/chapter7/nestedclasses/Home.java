@@ -23,6 +23,10 @@ package chapter7.nestedclasses;
 public class Home {
     private String greeting = "Hi";
 
+    public Home() {
+        class A {}
+    }
+
     protected class Room {
         public int repeat = 3;
         public void enter() {
@@ -31,6 +35,10 @@ public class Home {
         protected static void greet(String message) {
             System.out.println(message);
         }
+    }
+
+    {
+        class B {}
     }
 
     public void enterRoom() {

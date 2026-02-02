@@ -7,7 +7,7 @@ package chapter7.sealedclasses;
 *   - non-sealed: indicates that a class can be extended by unspecified classes
 * */
 
-public sealed class Shape permits Rectangular, Round, Triangle {}
+public sealed class Shape permits Rectangular, Round, Triangle, Rhomboid {}
 
 sealed class Rectangular extends Shape {} // permits is optional when all subclasses are in the same file
 
@@ -15,7 +15,11 @@ sealed class Round extends Shape {}
 
 non-sealed class Triangle extends Shape {}
 
-final class Square extends Rectangular {}
+final class Rhomboid extends Shape {}
+
+//class Diamond extends Rhomboid {} cannot extend final class
+
+non-sealed class Square extends Rectangular {}
 
 final class Oval extends Round {}
 

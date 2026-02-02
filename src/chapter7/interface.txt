@@ -1,0 +1,37 @@
+implicit modifiers
+    - interface is implicitly public
+    - variables are implicitly public, static, and final (constants)
+    - methods are implicitly abstract and public (unless private)
+    - default methods are implicitly public
+    - static methods are implicitly public
+
+MUST
+    - a concrete class implementing an interface must
+        - provide concrete implementations for all abstract methods
+            - in case of interfaces with same method signature (also for default methods)
+                - it must provide one compatible implementation (e.g. with same or covariant return type)
+        - define the overridden methods as public
+    - default, static, and private methods must have a method body
+
+CANNOT
+    - an interface cannot be instantiated directly
+    - invalid specifiers
+        - an interface cannot be marked final
+        - default methods cannot be final, abstract or static
+        - static methods cannot be final or abstract
+    - invalid modifiers
+        - an interface cannot be protected or private
+        - variables cannot be protected or private
+        - methods cannot be protected
+        - package visibility doesn't ever apply (because of implicit modifiers)
+
+CAN
+    - an interface can be implemented by a class
+    - a class (concrete or abstract) can implement multiple interfaces
+    - an interface can extend multiple interfaces
+
+special syntax
+    - default methods
+        access method from (one of) the interfaces: InterfaceName.super.methodName()
+    - static methods
+        access method from interface: InterfaceName.methodName()

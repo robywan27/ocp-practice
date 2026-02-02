@@ -1,0 +1,33 @@
+class that restricts which classes may extend it
+
+keywords:
+    - parent class/interface: permits + list of extending/implementing classes
+    - subclasses/interfaces
+        - final: can't be further extended
+        - sealed: same rules as parent sealed class
+        - non-sealed: can be extended by any (unknown) class
+
+MUST
+    - a sealed class must
+        - be declared in the same package (or named module) as its direct subclasses
+        - must list all direct subclasses in its permits clause (except when conditions below apply)
+    - subclasses must
+        - each extend the sealed class
+
+CANNOT
+    - a sealed class cannot list indirect (more than one level of inheritance) classes in its permits clause
+    - an interface that extends another interface cannot be final (interfaces are implicitly abstract)
+
+CAN
+    - a sealed class can
+        - omit permits if
+            - all subclasses are defined in the same file
+            - subclasses are nested
+        - be declared abstract
+    - a sealed interface permits keyword + implementing classes and extending interfaces
+    - in a switch statement/expression
+        - can omit the default branch when all permitted subclasses are covered and parent class is abstract
+
+special syntax
+    - permits in nested subclasses
+        - must be prefixed with the name of the enclosing sealed class: EnclosingSealedClassName.SubclassName

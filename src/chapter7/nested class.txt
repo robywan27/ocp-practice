@@ -1,0 +1,43 @@
+kinds
+    - inner class: non-static type at member level
+    - static nested class: static type at member level
+    - local class: type defined within a method/constructor/block
+    - anonymous class: unnamed type defined within an expression
+
+implicit modifiers
+    - a nested record is implicitly static
+
+MUST
+    - anonymous class
+        - extend a class or implement an interface
+
+CANNOT
+    - local class
+        - have an access modifier
+    - anonymous class
+        - both implement an interface and extend a class
+
+CAN
+    - inner class
+        - be declared private, protected, package-private, or public
+        - can extend another class or implement interfaces
+        - be marked abstract or final
+        - access instance members of the enclosing class directly
+    - static nested class
+        - be declared private, protected, package-private, or public
+        - the enclosing class can refer to fields and methods of the static nested class directly, even private ones
+    - local class
+        - be declared final or abstract
+        - include instance and static members
+        - access instance members of the enclosing class directly
+        - access only final or effectively final local variables
+    - anonymous  class
+        - access instance members of the enclosing class directly
+        - access only final or effectively final local variables
+
+special syntax
+    - inner class:
+        - instantiate: EnclosingClassName.InnerClassName innerObject = enclosingObject.new InnerClassName();
+        - reference members of the enclosing class: EnclosingClassName.this.memberName
+    - anonymous class:
+        - instantiate and define: new SuperClassOrInterface(constructorArgs) { // class body }

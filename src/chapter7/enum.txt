@@ -1,0 +1,35 @@
+fixed set of constants providing type-safe checking
+
+kinds
+    - simple: contains only a list of values
+    - complex: can contain (static or not) fields and (abstract) methods; and constructors
+
+implicit modifiers
+    - constructors are implicitly private
+
+MUST
+    - simple enums: optional semicolon
+    - complex enums
+        - mandatory semicolon after the list of values
+        - values must be defined first
+        - if an abstract method is defined
+            - all enum values must implement it
+            - can create an implementation for all enum values at once and override it for specific values
+    - String passed to valueOf() must match exactly an enum value
+
+CANNOT
+    - an enum cannot
+        - extend another enum
+        - extend a class
+        - be marked final (it is kinda implicitly final) or abstract
+
+CAN
+    - can implement multiple interfaces
+    - can compare enum values using == or equals()
+    - switch statement/expression
+        - can omit the default branch when all enum values are covered
+        - enum name is optional
+
+special syntax
+    - constructor calls (when defining list of values) don't use the new keyword: enumValue(constructorArgs)
+    - access an instance method: [enumName.]enumValue.methodName()

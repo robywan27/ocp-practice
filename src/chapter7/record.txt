@@ -1,0 +1,75 @@
+immutable class
+    - immutable object pattern
+        encapsulation
+            - restricts access to members of a class -> declare instance variables as private
+        - must not contain any mutator methods (setters)
+
+a record defines an encapsulated and immutable class with additional compiler-generated boilerplate
+    - constructor with params in the same order as record declaration (long constructor)
+    - accessor methods for each instance variable (no get/is prefix)
+    - equals(), hashCode(), and toString() methods
+
+implicit modifiers
+    - record is implicitly final
+    - instance variables are implicitly final (and private)
+
+MUST
+    - the long constructor must
+        - have same parameter list as record declaration
+        - initialize all instance variables
+        - overloaded constructors
+            - first line must be a call to another constructor (this(...)), or long constructor if there is no other constructor
+                - can only transform parameters on the first line
+
+CANNOT
+    - a record cannot be extended nor can inherit another record/class
+    - compact constructor cannot modify instance variables directly
+    - add instance fields outside the record declaration
+    - define instance initializers nor initialize fields outside constructor
+
+CAN
+    - a record can have no fields
+    - a record can implement interfaces
+    - compiler can omit generation of long constructors if an equivalent one is defined manually
+    - support static fields, methods, and static initializers
+    - support nested classes, interfaces, enums, and records
+    - support overriding methods (e.g. accessors, toString())
+    - to modify a record can make a new object (copy) with modified fields
+
+special syntax
+    - compact constructor:
+        RecordName {
+            // optional validation guards
+            // input param transformations
+        }
+        - has no parentheses and takes no parameters
+        - executes full constructor and afterward passing manipulated input params -> implicitly sets all fields
+
+pattern matching
+    - if statements
+        - if (animal instanceof Monkey monkey)
+        - match members of the record
+            - if (animal instanceof Monkey(String name, int age))
+                - must include all fields in order
+                - name of fields is irrelevant
+                - type of the record and each field must match (at compile-time)
+        - nested record patterns
+            - if (c instanceof Couple(Bear b, Bear b2))
+            - if (c instanceof Couple(Bear(String name, List<String> f), Bear b))
+            - if (c instanceof Couple(Bear(String name, List<String> f), Bear(String name2, List<String> f2)))
+            - with var
+                - if (c instanceof Couple(var b, Bear b2))
+                - if (c instanceof Couple(Bear(var name, List<String> f), var b))
+                ...
+            - generics
+                - if (c instanceof Couple(var b, Object b2))
+                - if (c instanceof Couple(var b, List b2))
+                - if (c instanceof Couple(var b, List<?> b2))
+                ...
+    - switch statements/expressions
+        - switch (animal) {
+            case Monkey(String name, int age) -> ...
+            case Lion l -> ...
+          }
+        - can omit default branch when all possible record types are covered
+        - type matters for when clauses

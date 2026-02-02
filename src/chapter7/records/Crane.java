@@ -13,7 +13,13 @@ package chapter7.records;
 * - can't extend or inherit a record
 * - can implement an interface
 * */
-public final record Crane(int numberEggs, String name) {}
+public final record Crane(int numberEggs, String name) implements A {
+    protected static void exampleMethod() { // valid but should declare it private/public/package-accessible because a record can't be extended
+        // numberEggs = 5; // not allowed, fields are final
+    }
+}
+
+interface A {}
 
 class CraneTester {
     public static void main(String[] args) {
