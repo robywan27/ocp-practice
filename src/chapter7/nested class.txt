@@ -36,6 +36,8 @@ CAN
         - access only final or effectively final local variables
 
 special syntax
+    - all nested classes:
+        - refer to variable in enclosing scope: EnclosingClassName.this.memberName
     - inner class:
         - instantiate: EnclosingClassName.InnerClassName innerObject = enclosingObject.new InnerClassName();
         - reference members of the enclosing class: EnclosingClassName.this.memberName

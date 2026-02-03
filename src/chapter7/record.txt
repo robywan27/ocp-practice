@@ -22,7 +22,7 @@ MUST
                 - can only transform parameters on the first line
 
 CANNOT
-    - a record cannot be extended nor can inherit another record/class
+    - a record cannot be extended nor can inherit another record/class -> cannot be declared abstract
     - compact constructor cannot modify instance variables directly
     - add instance fields outside the record declaration
     - define instance initializers nor initialize fields outside constructor
