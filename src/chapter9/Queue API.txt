@@ -1,0 +1,52 @@
+interface
+    Queue
+    Deque
+
+implementing classes
+    ArrayDeque
+    LinkedList
+
+* - means can throw an exception
+
+queue and deque methods
+    add data (to back)
+        *boolean add(E e)
+        boolean offer(E e)
+
+    read data (from front)
+        *E element()
+        E peek()
+
+    get and remove data (from front)
+        *E remove()
+        E poll()
+
+deque only methods
+    add data
+        to front
+            *void addFirst(E e)
+            boolean offerFirst(E e)
+        to back
+            *void addLast(E e)
+            boolean offerLast(E e)
+
+    read data
+        from front
+            *E getFirst()
+            E peekFirst()
+        from back
+            *E getLast()
+            E peekLast()
+
+    get and remove data
+        from front
+            *E removeFirst()
+            E pollFirst()
+        from back
+            *E removeLast()
+            E pollLast()
+
+    stack operations
+        void push(E e) - add to front
+        E pop() - get and remove from front
+        E peek() - read from front

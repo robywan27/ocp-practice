@@ -1,0 +1,53 @@
+interfaces
+    Comparable
+    Comparator
+
+Comparable
+    public interface Comparable<T> {
+        int compareTo(T other);
+    }
+
+    result:
+        - 0 -> this object is equal to other
+        - <0 -> this object is less than other
+        - >0 -> this object is greater than other
+
+    interface is meant to be implemented by class comparing
+
+    natural ordering that uses compareTo() is consistent with equals() if and only if
+        x.equals() == true whenever x.compareTo(y) == 0
+
+Comparator
+    @FunctionalInterface
+    public interface Comparator<T> {
+        int compare(T o1, T o2);
+    }
+
+    result:
+        - 0 -> o1 is equal to o2
+        - <0 -> o1 is less than o2
+        - >0 -> o1 is greater than o2
+
+    because it's a functional interface, it's common to declare it using a lambda
+
+    helper static methods
+        comparing(function)
+        comparingInt(function)
+        comparingLong(function)
+        comparingDouble(function)
+        naturalOrder()
+        reverseOrder()
+
+        methods that allow chaining methods
+            reversed()
+            thenComparing(function)
+            thenComparingInt(function)
+            thenComparingLong(function)
+            thenComparingDouble(function)
+
+
+sorting and searching
+    Collections.sort(List) - uses natural ordering (compareTo())
+    Collections.sort(Comparator)
+    Collections.reverse(List)
+    Collections.binarySearch(...) - requires a sorted collection

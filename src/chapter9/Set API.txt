@@ -1,0 +1,12 @@
+interface
+    Set
+
+implementing classes
+    HashSet
+    LinkedHashSet
+    TreeSet
+
+creating a Set
+    factory methods - create an immutable set
+        Set.of(varargs)
+        Set.copyOf(collection)

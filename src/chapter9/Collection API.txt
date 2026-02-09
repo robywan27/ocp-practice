@@ -1,0 +1,27 @@
+public methods of Collection interface
+
+add data
+    boolean add(E element)
+
+remove data
+    boolean remove(Object object)
+    remove with condition
+        boolean removeIf(Predicate<? super E> filter)
+            - lower-bound wildcard, so it matches type E or any of its supertypes
+               makes sense because predicate param might be a supertype, which can accept an instance of E due to polymorphism
+
+count elements
+    boolean isEmpty()
+    int size()
+
+clear collection
+    void clear()
+
+check contents
+    boolean contains(Object object)
+
+iterate on a collection
+    void forEach(Consumer<? super T> action)
+
+determine equality
+    boolean equals(Object object) - every class provides its own implementation

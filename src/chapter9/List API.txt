@@ -1,0 +1,56 @@
+interface
+    List
+
+implementing classes
+    ArrayList
+    LinkedList
+
+creating a List
+    factory methods
+        cannot add/delete elements
+            Arrays.asList(varargs) - create a fixed size list backed by an array; can change elements; changes to the array are reflected in the list and vice versa
+            List.of(varargs) - create an immutable list
+            List.copyOf(collection) - create an immutable list from a another list
+
+    constructor
+        new LinkedList<>() - creates an empty LinkedList
+        new LinkedList<>(copyList) - creates a new ArrayList containing the elements of copyList
+        ArrayList only
+            new ArrayList<>(initialCapacity) - creates an empty ArrayList with the specified initial capacity
+
+add data
+    to end of the list
+        boolean add(E element)
+            exception if adding to immutable list or list backed by an array
+    at index
+        void add(int index, E element)
+            exception if adding to immutable list or list backed by an array or index is out of bounds
+
+read data
+    E get(int index)
+        exception if index is out of bounds
+
+get index (returns -1 if not found)
+    int indexOf(Object object)
+        exception if index is out of bounds
+    int lastIndexOf(Object object)
+
+remove data
+    E remove(int index)
+        exception if removing from immutable list or list backed by an array or index is out of bounds
+
+modify data
+    E set(int index, E element)
+        exception if modifying an immutable list or index is out of bounds
+    void replaceAll(UnaryOperator<E> operator)
+
+sort data
+    void sort(Comparator<? super E> comparator)
+
+to Array - create a copy of the list, so modifications to the list does not affect the array and vice versa
+    toArray() - creates an array of type Object
+    toArray(T[] array)
+        - specifies the type of the array
+        - if size 0 is passed, a new array of the same type is created with the size of the list
+        - if the array is too small, a new array of the same type is created
+        - if the array is larger, it is returned

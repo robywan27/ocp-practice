@@ -1,0 +1,11 @@
+sorting and searching
+    Collections.sort(List) - uses natural ordering (compareTo())
+    Collections.sort(Comparator)
+    Collections.reverse(List)
+    Collections.binarySearch(...) - requires a sorted collection
+
+unmodifiable view - wrapper object around a collection that cannot be modified through the view itself (the underlying collection can still be modified)
+    Collections.unmodifiableCollection(collection)
+    Collections.unmodifiableList(list)
+    Collections.unmodifiableSet(set)
+    Collections.unmodifiableMap(map)

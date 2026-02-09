@@ -1,0 +1,45 @@
+New in Java 21!
+
+interfaces
+    SequencedCollection
+        SequencedSet (extends SequencedCollection)
+    SequencedMap
+
+definition
+    a sequenced collection is a collection in which the encounter order is well-defined
+    encounter order means all the elements can be read in a repeatable way (elements are not required to be sorted)
+
+note
+    most of the collections are sequenced, except HashMap and HashSet
+
+SequencedCollection (and SequencedSet) methods
+    add data
+        addFirst(E e)
+        addLast(E e)
+
+    read data
+        getFirst()
+        getLast()
+
+    remove data
+        removeFirst()
+        removeLast()
+
+    reverse order
+        reversed()
+
+SequencedMap methods
+    add data
+        putFirst(K key, V value)
+        putLast(K key, V value)
+
+    read data
+        firstEntry()
+        lastEntry()
+
+    remove data
+        pollFirstEntry()
+        pollLastEntry()
+
+    reverse order
+        reversed()

@@ -1,0 +1,51 @@
+interface
+    Map
+
+implementing classes
+    HashMap
+    LinkedHashMap
+    TreeMap
+
+creating a Map
+    factory methods - create an immutable map
+        Map.of(varargs) - pass keys and values as separate arguments
+        Map.ofEntries(Map.Entry... entries) - pass Map.Entry objects as arguments
+        Map.copyOf(Map)
+
+add data
+    V put(K key, V value) - adds/replaces a key-value pair; returns previous value or null
+    V putIfAbsent(K key, V value) - adds a key-value pair only if the key is not already present and returns null; otheriwse returns existing value
+
+read data
+    read element
+        V get(Object key) - returns null if key is not found
+        V getOrDefault(Object key, V defaultValue) - returns defaultValue if key is not found
+    Set<Map.Entry<K, V>> entrySet() - returns a set of key-value pairs
+    Set<K> keySet() - returns a set of keys
+    Collection<V> values() - returns a collection of values
+
+check contents
+    boolean containsKey(Object key)
+    boolean containsValue(Object value)
+
+remove data
+    V remove(Object key) - removes the key-value pair and returns the value; returns null if none
+    void clear() - removes all key-value pairs
+
+modify data
+    V replace(K key, V value) - replaces the value for the specified key only if it set; returns previous value or null
+    void replaceAll(BiFunction<K, V, V> function) - replaces each value with results of function
+
+count elements
+    boolean isEmpty()
+    int size()
+
+iterate on a Map
+    void forEach(BiConsumer<K, V> action)
+
+merge
+    V merge(K key, V value, BiFunction<V, V, V> function)
+        - if key is set -> runs function to determine new value
+            - if value is null -> updates key's value with value param
+        - if key is not set -> adds key-value pair
+        - if mapping function returns null -> removes key from map

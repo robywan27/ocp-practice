@@ -1,0 +1,49 @@
+generics: parameterized types
+
+3 ways to define a variable using generics:
+    List<Integer> list = new ArrayList<Integer>();
+    List<Integer> list = new ArrayList<>(); // type can be inferred from left-side; <> diamond operator
+    var list = new ArrayList<Integer>(); // type can be inferred from right-side with var
+
+    invalide declarations:
+        var list = new ArrayList<>(); // it compiles! But declares an ArrayList<Object>
+        List<> list = new ArrayList<>(); // DOES NOT COMPILE
+        void use(List<> data) {} // DOES NOT COMPILE
+
+formal type parameter in angle brackets: <T>
+    with class
+        public class Box<T> {...} // T is available in the entire class
+    with interface
+        interface Box<T> {...} // T is available in the entire interface
+        class implementing a generic interface can
+            - specify the generic type in the class
+            - create a generic class to allow the caller to specify the generic type
+            - not use generics (generates compiler warning)
+    with methods
+        public static <T> void print(T data) {...} // T is only available in the method
+            formal generic type is declared before the return type
+        call methods
+            - normally: Box.print(123)
+            - with explicit type: Box.<String>print("Hello")
+        generic type defined in the method is independent of the generic type defined in the class
+    with records
+        public record Box<T>(T data) {...} // T is available in the entire record
+
+type erasure - process of removing the generic syntax from the code
+    - at runtime all generic types are replaced with Object
+    - compiler adds the relevant casts to the code to ensure type safety
+
+    - overloaded methods with the same erasure are not allowed
+
+returning generic types in overridden methods
+    - return types must be covariant (subtype)
+    - generic parameter type must match the parent's type exactly
+
+bounded generic types
+    - unbounded wildcard: <?> - represents any data type
+    - upper bound: <? extends Number> - T can be Number or any of its subclasses
+    - lower bound: <? super Integer> - T can be Integer or any of its superclasses
+
+lists
+    with upper bounds or unbounded wildcards - list becomes immutable because we cannot add any element to the list (we don't know the exact type of the list)
+    with lower bounds - we can add elements to the list

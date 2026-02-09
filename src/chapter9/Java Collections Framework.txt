@@ -1,0 +1,46 @@
+main interfaces and classes (c)
+
+    Collection
+        Set
+            HashSet (c)
+            SequencedSet
+                LinkedHashSet (c)
+                TreeSet (c)
+        SequencedCollection
+            List
+                ArrayList (c)
+                LinkedList (c) - implements both List and Deque
+        Queue
+            Deque
+                ArrayDeque (c)
+                LinkedList (c) - implements both List and Deque
+
+    Map
+        HashMap (c)
+        SequencedMap
+            LinkedHashMap (c)
+            TreeMap (c)
+
+
+Set: no duplicates, unordered collection
+    HashSet: backed by a hash table (uses hashCode() method), fast operations, no order guarantee
+    LinkedHashSet: maintains insertion order, can add/remove from front/back of set, can be slower than HashSet for random access
+    TreeSet: sorted order, backed by a tree, accessing/adding an element could be slower than HashSet (as tree grows larger); null elements are not allowed
+
+List: ordered collection of elements, allows duplicates, indexed access
+    ArrayList: resizable array, fast random access, slow insertions/deletions -> good for when reading more often/same amount as writing to
+    LinkedList: doubly linked list, fast access/insertions/deletions from beginning/end of list, slow random access (linear time)
+
+Queue/Deque: orders elements in a specific way, typically FIFO; Deque (double-ended queue) allows access at both ends
+    ArrayDeque: double-ended queue, resizable array implementation of a deque, fast operations
+    LinkedList: double-ended queue, can also be used as a list, less efficient than ArrayDeque
+
+Map: key-value pairs, no duplicate keys
+    HashMap: backed by a hash table, fast operations, no order guarantee
+    LinkedHashMap: maintains insertion order, can add/remove from front/back of map, can be slower than HashMap for random access
+    TreeMap: sorted order of keys, backed by a tree, accessing/adding an element could be slower than HashMap (as tree grows larger); null keys are not allowed
+
+(new starting from Java 21) Sequence: maintains the order of elements, allows duplicates
+    SequencedSet: maintains insertion order, no duplicates
+    SequencedCollection: maintains insertion order, allows duplicates
+    SequencedMap: maintains insertion order of keys, no duplicate keys
