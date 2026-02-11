@@ -1,0 +1,32 @@
+class Optional<T> takes generic type parameter T
+
+static factory methods
+    Optional.empty()
+    Optional.of(T value)
+    Optional.ofNullable(T value) - if value is null return Optional.empty()
+
+instance methods
+    get() - returns the value if present, otherwise throws NoSuchElementException
+    isPresent() - returns true if value is present, otherwise false
+    orElse(T other) - returns the value if present, otherwise returns other
+    orElseThrow() - returns the value if present, otherwise throws NoSuchElementException
+
+    ifPresent(Consumer action) - if value is present, performs the given action with the value, otherwise does nothing
+    orElseGet(Supplier other) - returns the value if present, otherwise returns the result produced by the supplier
+    orElseThrow(Supplier exceptionSupplier) - returns the value if present, otherwise throws an exception produced by the exception supplier
+
+with primitive types (primitive streams)
+    OptionalInt
+        getAsInt()
+        orElseGet(IntSupplier s)
+    OptionalLong
+        getAsLong()
+        orElseGet(LongSupplier s)
+    OptionalDouble
+        getAsDouble()
+        orElseGet(DoubleSupplier s)
+
+advanced operations (they all return empty Optional if value is not present)
+    filter(Predicate predicate)
+    map(Function mapper)
+    flatMap(Function mapper)

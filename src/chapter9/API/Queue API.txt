@@ -47,6 +47,6 @@ deque only methods
             E pollLast()
 
     stack operations
-        void push(E e) - add to front
-        E pop() - get and remove from front
+        *void push(E e) - add to front
+        *E pop() - get and remove from front
         E peek() - read from front

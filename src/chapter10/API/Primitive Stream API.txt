@@ -1,0 +1,79 @@
+interfaces (they obviously don't take a generic type)
+    IntStream - for int, short, byte, char
+    LongStream
+    DoubleStream - for double and float
+
+methods unique to primitive streams
+    OptionalDouble average()
+
+    Stream<T> boxed() - converts a primitive stream to a stream of the corresponding wrapper type (e.g., IntStream to Stream<Integer>)
+
+    OptionalInt max()
+    OptionalLong max()
+    OptionalDouble max()
+
+    OptionalInt min()
+    OptionalLong min()
+    OptionalDouble min()
+
+    int sum() - note: they return the primitive type
+    long sum() - note: they return the primitive type
+    double sum() - note: they return the primitive type
+
+    IntStream range(int a, int b) - b (exclusive)
+    LongStream range(long a, long b)
+    IntStream rangeClosed(int a, int b) - b (inclusive)
+    LongStream rangeClosed(long a, long b)
+
+    IntSummaryStatistics summaryStatistics()
+    LongSummaryStatistics summaryStatistics()
+    DoubleSummaryStatistics summaryStatistics()
+
+mapping streams from a type to another
+    Stream<T> to
+        Stream - map(Function<T, R> mapper)
+        IntStream - mapToInt(ToIntFunction<T> mapper)
+        LongStream - mapToLong(ToLongFunction<T> mapper)
+        DoubleStream - mapToDouble(ToDoubleFunction<T> mapper)
+
+    IntStream to
+        Stream - mapToObj(IntFunction<R> mapper)
+        IntStream - map(IntUnaryOperator mapper)
+        LongStream - mapToLong(ToLongFunction<T> mapper)
+        DoubleStream - mapToDouble(ToDoubleFunction<T> mapper)
+
+    LongStream to
+        Stream - mapToObj(LongFunction<R> mapper)
+        IntStream - mapToInt(ToIntFunction<T> mapper)
+        LongStream - map(LongUnaryOperator mapper)
+        DoubleStream - mapToDouble(ToDoubleFunction<T> mapper)
+
+    DoubleStream to
+        Stream - mapToObj(DoubleFunction<R> mapper)
+        IntStream - mapToInt(ToIntFunction<T> mapper)
+        LongStream - mapToLong(ToLongFunction<T> mapper)
+        DoubleStream - map(DoubleUnaryOperator mapper)
+
+    flatmap
+        Stream<T> to other stream types - flatMapToInt, flatMapToLong, flatMapToDouble
+
+        IntStream, Longstream, DoubleStream - flatMap (only possible to transform to the same type, e.g., IntStream to IntStream)
+
+optional with primitive streams - check previous methods for return types
+    OptionalInt
+        getAsInt()
+        orElseGet(IntSupplier s)
+    OptionalLong
+        getAsLong()
+        orElseGet(LongSupplier s)
+    OptionalDouble
+        getAsDouble()
+        orElseGet(DoubleSupplier s)
+
+statistics - allows primitive streams to run more terminal operations against the same stream
+    IntSummaryStatistics, LongSummaryStatistics, DoubleSummaryStatistics
+        getCount()
+        getSum()
+        getMin()
+        getMax()
+        getAverage()

@@ -1,0 +1,78 @@
+stream is composed of
+    - source - where stream data comes from
+    - intermediate operations - they use lazy evaluation, they are not executed until a terminal operation is invoked
+    - terminal operations - produce a result; strams can be used only once, so stream is no longer valid after terminal operation completes
+
+note: a stream can only be operated on once after a terminal operation is performed. If you try to use the stream after it has been consumed, it will throw an IllegalStateException
+
+interface Stream<T>
+
+creating a stream
+    static factory methods
+        finite stream
+            Stream.empty()
+            Stream.of(varargs)
+        infinite stream
+            Stream.generate(supplier)
+            Stream.iterate(seed, unaryOperator)
+            Stream.iterate(seed, predicate, unaryOperator) - stream may be finite if predicate is false
+
+    from collection to stream
+        Collection.stream()
+        Collection.parallelStream()
+
+terminal operations (type signatures are simplified)
+    long count()
+
+    Optional<T> min(Comparator comparator)
+    Optional<T> max(Comparator comparator)
+
+    Optional<T> findAny() - if stream is empty, returns Optional.empty(); not a reduction operation because they might not process all elements and reduce them into one value
+    Optional<T> findFirst() - if stream is empty, returns Optional.empty(); not a reduction operation because they might not process all elements and reduce them into one value
+
+    boolean anyMatch(Predicate predicate)
+    boolean allMatch(Predicate predicate) - might not terminate if stream is infinite
+    boolean noneMatch(Predicate predicate)
+
+    void foreach(Consumer action)
+
+    T reduce(T identity, BinaryOperator accumulator)
+        - identity = initial value of the reduction
+        - accumulator: combines the current result with the current value in the stream
+    Optional<T> reduce(BinaryOperator accumulator)
+        - empty stream -> Optional.empty()
+        - stream has one element -> Optional.of(element)
+        - stream has more than one element -> Optional.of(result of applying accumulator to the elements)
+    U reduce(U identity, BiFunction accumulator, BinaryOperator<U> combiner)
+        - when dealing with different types
+        - initializer
+        - accumulator: handles mixed types
+        - combiner: combines the results of the accumulator when processing in parallel; for sequential stream, it is not used
+
+    R collect(Supplier<R> supplier, BiConsumer accumulator, BiConsumer combiner)
+        - mutable reduction operation
+        - supplier: creates a new result container
+        - accumulator: adds an element to the result container
+        - combiner: combines two result containers when processing in parallel; for sequential stream, it is not used
+    R collect(Collector collector)
+        - uses a Collector (from the Collectors class) to perform the mutable reduction operation
+
+intermediate operations
+    Stream<T> filter(Predicate predicate)
+
+    Stream<T> distinct()
+
+    Stream<T> limit(long maxSize) - can make a finite stream from an infinite stream
+    Stream<T> skip(long n)
+
+    Stream<R> map(Function mapper)
+
+    Stream<R> flatMap(Function mapper) - first map then flatten
+
+    Stream<T> sorted() - natural order; it collects all elements as they come in but sort them all at once -> hangs indefinitely if stream is infinite or predicate is never false
+    Stream<T> sorted(Comparator comparator) - it collects all elements as they come in but sort them all at once -> hangs indefinitely if stream is infinite or predicate is never false
+
+    Stream<T> peek(Consumer action)
+
+    extra static method
+        Stream.concat(Stream a, Stream b)

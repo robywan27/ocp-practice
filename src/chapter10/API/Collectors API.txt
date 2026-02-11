@@ -1,0 +1,48 @@
+static methods (need to pass them to stream.collect() to be useful)
+    Long counting()
+
+    Optional<T> maxBy(Comparator comparator)
+    Optional<T> minBy(Comparator comparator)
+
+    average
+        Double averagingInt(ToIntFunction mapper)
+        Double averagingLong(ToLongFunction mapper)
+        Double averagingDouble(ToDoubleFunction mapper)
+    sum
+        Integer summingInt(ToIntFunction mapper)
+        Long summingLong(ToLongFunction mapper)
+        Double summingDouble(ToDoubleFunction mapper)
+    statistics
+        IntSummaryStatistics summarizingInt(ToIntFunction mapper)
+        LongSummaryStatistics summarizingLong(ToLongFunction mapper)
+        DoubleSummaryStatistics summarizingDouble(ToDoubleFunction mapper)
+
+    R filtering(Predicate predicate, Collector downstream)
+
+    String joining(CharSequence delimiter)
+
+    List toList() - returns a mutable List
+    Set toSet()
+    Collection toCollection(Supplier collectionFactory)
+    to map collection
+        Map toMap(Function keyMapper, Function valueMapper)
+        Map toMap(Function keyMapper, Function valueMapper, BinaryOperator mergeFunction)
+        Map toMap(Function keyMapper, Function valueMapper, BinaryOperator mergeFunction, Supplier mapSupplier)
+
+    grouping - function determines the keys; values are lists of elements that match the key
+        Map<K, List<T> groupingBy(Function classifier)
+        Map<K, List<T> groupingBy(Function classifier, Collector downstream)
+        Map<K, List<T> groupingBy(Function classifier, Supplier mapFactory, Collector downstream)
+    partitioning - special case of grouping with only two groups (true and false)
+        Map<Boolean, List<T>> partitioningBy(Predicate predicate)
+        Map<Boolean, List<T>> partitioningBy(Predicate predicate, Collector downstream)
+    mapping - applies a function to the values (first param) before collecting them (second param)
+        Collector mapping(Function mapper, Collector downstream)
+
+    teeing - applies two collectors to the same input and then merges their results using a specified function
+        R teeing(Collector downstream1, Collector downstream2, BiFunction merger)
+
+Spliterator - starts from a Collection or Stream and splits them in half until returning null if there's no more elements
+    Spliterator<T> spliterator()
+    void forEachRemaining(Consumer action)
+    boolean tryAdvance(Consumer action)
