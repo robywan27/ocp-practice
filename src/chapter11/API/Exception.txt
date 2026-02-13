@@ -1,0 +1,59 @@
+classes
+    Throwable
+        Exception - checked exceptions (must be handled with try-catch or declared in method signature with throws)
+            RuntimeException - unchecked exceptions (do not need to be handled or declared, but can be caught if desired)
+                ArithmeticException - / number by 0
+                ArrayIndexOutOfBoundsException - access array with invalid index
+                NullPointerException - access a null reference
+                ClassCastException - cast to invalid type
+                IllegalArgumentException - invalid argument passed to a method
+                    NumberFormatException - invalid string passed to a method that expects a number
+            IOException - input/output error
+                FileNotFoundException - file not found
+                NotSerializableException - object cannot be serialized/deserialized
+            ParseException - error parsing a string
+        Error - unchecked exceptions (fatal errors, don't handle and don't catch)
+            ExceptionInInitializerError - error during static initialization
+            StackOverflowError - stack overflow (e.g. infinite recursion)
+            NoClassDefFoundError - class not found at runtime
+
+throwing an exception
+    throw new ExceptionType("message"); // creates a new instance of the exception and throws it
+
+declaring exceptions in method signature
+    void method() throws ExceptionType1, ExceptionType2, ... {
+        // code that may throw the declared exceptions
+    }
+
+handling exceptions
+    try-catch-finally block
+        try {
+            // code that may throw an exception
+        }
+        catch (ExceptionType1 | ExceptionType3 e) { // ExceptionType3 not allowed to be subclass of ExceptionType1
+            // handle exception of type ExceptionType1 or ExceptionType3
+        }
+        catch (ExceptionType2 e) { // ExceptionType2 not allowed to be subclass of ExceptionType1
+            // handle exception of type ExceptionType2
+        }
+        finally { // if present it is always executed; if present catch clauses are optional
+            // code that is always executed, regardless of whether an exception was thrown or caught
+        }
+
+    try-with-resources block (for AutoCloseable resources)
+        final var resource3 = new ResourceType3();              // must be final or effectively final
+        try (ResourceType1 resource1 = new ResourceType1();     // delimited by ; its own statement
+             var resource2 = new ResourceType2();               // resources are closed in the reverse order of their declaration
+             resource3 /* optional ; */) {                      // automatically calls resource.close() at the end of the block, even if an exception is thrown
+            // code that uses the resource
+        }                                                       // implicit finally always executed to close the resource before the catch block and finally blocks are executed
+        catch (ExceptionType e) {
+            // optional
+        }
+        finally {
+            // optional
+        }
+
+suppressed exceptions
+    - exceptions that are thrown while closing a resource in a try-with-resources block, but are not the primary exception that caused the block to exit
+    - can be accessed using Throwable.getSuppressed() method on the primary exception

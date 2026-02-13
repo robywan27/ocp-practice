@@ -1,0 +1,119 @@
+Formatting
+    numbers
+        abstract class NumberFormat
+            public final String format(double number)
+            public final String format(long number)
+
+        class DecimalFormat extends NumberFormat
+            public DecimalFormat(String pattern)
+                pattern symbols: #, 0
+
+        class CompactNumberFormat extends NumberFormat (check localization below)
+
+    dates, times
+        class DateTimeFormatter
+            constants
+                ISO_LOCAL_DATE - yyyy-MM-dd
+                ISO_LOCAL_TIME - HH:mm:ss
+                ISO_LOCAL_DATE_TIME - yyyy-MM-dd'T'HH:mm:ss
+
+            public static DateTimeFormatter ofPattern(String pattern)
+                pattern symbols: y, M, d, H, h, m, s, a, z, Z
+                escape custom text with single quotes: 'text', 'don''t'
+
+        format()
+            given
+                var date = LocalDate.of(2024, 6, 1);
+                var formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            - pass formatter to date/time classes: date.format(formatter)
+            - pass date/time value to formatter class: formatter.format(date)
+
+localization
+    class Locale
+        formats
+            - language: en, nl, fr, etc. lowercase
+            - language, country: en-US, en-UK, etc. language in lowercase, country in uppercase
+        select a locale
+            - Locale.getDefault() - returns the default locale of the JVM
+            - built-in constants for common locales: Locale.US, Locale.UK, Locale.CANADA, etc.
+            - factory methods
+                Locale.of(language, country)
+                Locale.of(language)
+            - builder pattern
+                Locale.Builder builder = new Locale.Builder()
+                .setLanguage(language)
+                .setRegion(country);
+                .build();
+        set a default locale
+            - Locale.setDefault(Locale locale)
+
+    localization of numbers, currency, percentages, dates
+        factory methods - may take a locale param (Locale locale) or not ()
+            numbers
+                NumberFormat.getInstance() or NumberFormat.getInstance(Locale locale)
+                NumberFormat.getNumberInstance or NumberFormat.getNumberInstance(Locale locale)
+                NumberFormat.getIntegerInstance or NumberFormat.getIntegerInstance(Locale locale)   - rounds decimal values
+            currency
+                NumberFormat.getCurrencyInstance() or NumberFormat.getCurrencyInstance(Locale locale)
+            percentages
+                NumberFormat.getPercentInstance() or NumberFormat.getPercentInstance(Locale locale)
+            compact numbers
+                NumberFormat.getCompactNumberInstance() or NumberFormat.getCompactNumberInstance(Locale locale, NumberFormat.Style style)
+                    - style: SHORT or LONG
+                        - SHORT: K, M, B, T; last digit is rounded
+                        - LONG: thousand, million, billion, trillion
+            dates and times
+                DateTimeFormatter.ofLocalizedDate(FormatStyle style)
+                DateTimeFormatter.ofLocalizedTime(FormatStyle style)
+                DateTimeFormatter.ofLocalizedDateTime(FormatStyle dateStyle, FormatStyle timeStyle)
+                DateTimeFormatter.ofLocalizedDateTime(FormatStyle dateTimeStyle)
+                    - style: FULL, LONG, MEDIUM, SHORT
+                    - withLocale(Locale locale) - returns a copy of the formatter with the specified locale
+
+        methods
+            String format(double/long n) - from number to String
+            Number parse(String s) - from String to number; throws ParseException if the string cannot be parsed
+
+        Locale.Category
+            - DISPLAY
+            - FORMAT
+
+internationalization
+    resource bundles
+        - a set of properties files that contain localized strings for different locales
+            - base name: the name of the resource bundle
+            - _
+            - locale suffix: a string that identifies the locale (e.g. "en", "en-US", "fr", etc.)
+            - file extension: .properties
+            - example: Messages_en.properties, Messages_fr.properties, etc.
+
+    class ResourceBundle
+        get instance
+            getBundle(String baseName) or getBundle(String baseName, Locale locale)
+        methods
+            String getString(String key) - returns the localized string for the given key; throws MissingResourceException if the key is not found
+            Set<String> keySet() - returns a set of keys in the resource bundle
+
+    rules
+        pick a resource bundle based on the locale
+            - if an exact match is found, use that resource bundle
+            - if a match is found for the language but not the country, use that resource bundle
+            - if a match is found for the default locale, use that resource bundle
+            - if a match is found for the default language but not the country, use that resource bundle
+            - if a match is found for the default bundle, use that resource bundle
+            - if no match is found, throw MissingResourceException
+        select a string from the resource bundle based on the key
+            - if the key is found, return the corresponding string
+            - search for the key in the parent resource bundle if it is not found in the current resource bundle
+            - if the key is not found, throw MissingResourceException
+
+    format strings from resource bundles
+        MessageFormat.format(String pattern, Object... arguments)
+            property: greeting=Hello, {0}! You have {1} new messages.
+            code: String message = MessageFormat.format(bundle.getString("greeting"), "Alice", 5);
+
+    class Properties
+        var prop = new Properties()
+        prop.setProperty(String key, String value)
+        prop.getProperty(String key) or prop.getProperty(String key, String defaultValue)
+        prop.get(String key)
