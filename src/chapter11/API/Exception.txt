@@ -1,6 +1,10 @@
 classes
     Throwable
         Exception - checked exceptions (must be handled with try-catch or declared in method signature with throws)
+            IOException - input/output error
+                FileNotFoundException - file not found
+                NotSerializableException - object cannot be serialized/deserialized
+            ParseException - error parsing a string
             RuntimeException - unchecked exceptions (do not need to be handled or declared, but can be caught if desired)
                 ArithmeticException - / number by 0
                 ArrayIndexOutOfBoundsException - access array with invalid index
@@ -8,21 +12,18 @@ classes
                 ClassCastException - cast to invalid type
                 IllegalArgumentException - invalid argument passed to a method
                     NumberFormatException - invalid string passed to a method that expects a number
-            IOException - input/output error
-                FileNotFoundException - file not found
-                NotSerializableException - object cannot be serialized/deserialized
-            ParseException - error parsing a string
         Error - unchecked exceptions (fatal errors, don't handle and don't catch)
             ExceptionInInitializerError - error during static initialization
             StackOverflowError - stack overflow (e.g. infinite recursion)
             NoClassDefFoundError - class not found at runtime
+        classes inheriting from Throwable - checked exceptions
 
-throwing an exception
+throwing an exception (if an unchecked exception is thrown, it can be declared/caught but it is not required)
     throw new ExceptionType("message"); // creates a new instance of the exception and throws it
 
 declaring exceptions in method signature
     void method() throws ExceptionType1, ExceptionType2, ... {
-        // code that may throw the declared exceptions
+        // code that may (or may not) throw the declared exceptions
     }
 
 handling exceptions
@@ -30,28 +31,28 @@ handling exceptions
         try {
             // code that may throw an exception
         }
-        catch (ExceptionType1 | ExceptionType3 e) { // ExceptionType3 not allowed to be subclass of ExceptionType1
+        catch (ExceptionType1 | ExceptionType3 e) { // e cannot be a variable defined in scope; ExceptionType3 not allowed to be a subclass of ExceptionType1 and vice versa
             // handle exception of type ExceptionType1 or ExceptionType3
         }
-        catch (ExceptionType2 e) { // ExceptionType2 not allowed to be subclass of ExceptionType1
+        catch (ExceptionType2 e) { // ExceptionType2 not allowed to be a subclass of ExceptionType1
             // handle exception of type ExceptionType2
         }
         finally { // if present it is always executed; if present catch clauses are optional
             // code that is always executed, regardless of whether an exception was thrown or caught
         }
 
-    try-with-resources block (for AutoCloseable resources)
+    try-with-resources block (for classes implementing the AutoCloseable interface)
         final var resource3 = new ResourceType3();              // must be final or effectively final
         try (ResourceType1 resource1 = new ResourceType1();     // delimited by ; its own statement
              var resource2 = new ResourceType2();               // resources are closed in the reverse order of their declaration
              resource3 /* optional ; */) {                      // automatically calls resource.close() at the end of the block, even if an exception is thrown
             // code that uses the resource
         }                                                       // implicit finally always executed to close the resource before the catch block and finally blocks are executed
-        catch (ExceptionType e) {
-            // optional
+        catch (ExceptionType e) { // optional
+            // ...
         }
-        finally {
-            // optional
+        finally { // optional
+            // ...
         }
 
 suppressed exceptions

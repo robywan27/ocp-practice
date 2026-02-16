@@ -17,11 +17,10 @@ public class NonTerminatingIntermediateOperations {
 //                .limit(2)
 //                .forEach(System.out::println);
 
-        System.out.println();
-        Stream.generate(() -> "Elsa")
-                .filter(n -> n.length() == 4)
-                .distinct() // doesn't wait
-                .limit(2)
-                .forEach(System.out::println); // Elsa
+//        Stream.generate(() -> "Elsa")
+//                .filter(n -> n.length() == 4)
+//                .distinct() // doesn't wait
+//                .limit(2)
+//                .forEach(System.out::println); // Elsa - doesn't terminate because of infinite stream
     }
 }

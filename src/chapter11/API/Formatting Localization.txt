@@ -6,20 +6,22 @@ Formatting
 
         class DecimalFormat extends NumberFormat
             public DecimalFormat(String pattern)
-                pattern symbols: #, 0
+                pattern symbols:
+                    # - omit position if no digit is present
+                    0 - put 0 if no digit is present
 
         class CompactNumberFormat extends NumberFormat (check localization below)
 
     dates, times
-        class DateTimeFormatter
+        class DateTimeFormatter - get instance via static members
             constants
                 ISO_LOCAL_DATE - yyyy-MM-dd
                 ISO_LOCAL_TIME - HH:mm:ss
                 ISO_LOCAL_DATE_TIME - yyyy-MM-dd'T'HH:mm:ss
 
             public static DateTimeFormatter ofPattern(String pattern)
-                pattern symbols: y, M, d, H, h, m, s, a, z, Z
-                escape custom text with single quotes: 'text', 'don''t'
+                pattern symbols: y, M, d, H (24-hour), h (12-hour), m, s, a (a.m./p.m.), z (time zone name), Z (time zone offset)
+                escape custom text with single quotes: e.g. 'text', 'don''t'
 
         format()
             given
@@ -32,17 +34,17 @@ localization
     class Locale
         formats
             - language: en, nl, fr, etc. lowercase
-            - language, country: en-US, en-UK, etc. language in lowercase, country in uppercase
-        select a locale
+            - language, country: en_US, en_UK, etc. language in lowercase, country in uppercase, separated by an underscore§
+        get instance of Locale
             - Locale.getDefault() - returns the default locale of the JVM
             - built-in constants for common locales: Locale.US, Locale.UK, Locale.CANADA, etc.
             - factory methods
-                Locale.of(language, country)
-                Locale.of(language)
+                Locale.of(String language, String country)
+                Locale.of(String language)
             - builder pattern
                 Locale.Builder builder = new Locale.Builder()
-                .setLanguage(language)
-                .setRegion(country);
+                .setLanguage(String language)
+                .setRegion(String country);
                 .build();
         set a default locale
             - Locale.setDefault(Locale locale)
@@ -60,8 +62,8 @@ localization
             compact numbers
                 NumberFormat.getCompactNumberInstance() or NumberFormat.getCompactNumberInstance(Locale locale, NumberFormat.Style style)
                     - style: SHORT or LONG
-                        - SHORT: K, M, B, T; last digit is rounded
-                        - LONG: thousand, million, billion, trillion
+                        - SHORT: number + no space + K, M, B, T; last digit is rounded
+                        - LONG: number + space + thousand, million, billion, trillion
             dates and times
                 DateTimeFormatter.ofLocalizedDate(FormatStyle style)
                 DateTimeFormatter.ofLocalizedTime(FormatStyle style)
@@ -85,7 +87,7 @@ internationalization
             - _
             - locale suffix: a string that identifies the locale (e.g. "en", "en-US", "fr", etc.)
             - file extension: .properties
-            - example: Messages_en.properties, Messages_fr.properties, etc.
+            - example: Messages_en_US.properties, Messages_fr.properties, Messages.properties (default bundle), etc.
 
     class ResourceBundle
         get instance
@@ -95,7 +97,7 @@ internationalization
             Set<String> keySet() - returns a set of keys in the resource bundle
 
     rules
-        pick a resource bundle based on the locale
+        pick a resource bundle for a requested locale
             - if an exact match is found, use that resource bundle
             - if a match is found for the language but not the country, use that resource bundle
             - if a match is found for the default locale, use that resource bundle
@@ -104,7 +106,8 @@ internationalization
             - if no match is found, throw MissingResourceException
         select a string from the resource bundle based on the key
             - if the key is found, return the corresponding string
-            - search for the key in the parent resource bundle if it is not found in the current resource bundle
+            - search for the key in the parent resource bundle if it is not found in the current resource bundle; note: default locale is not checked
+                Messages_en_US.properties -> parent: Messages_en.properties -> parent: Messages.properties
             - if the key is not found, throw MissingResourceException
 
     format strings from resource bundles

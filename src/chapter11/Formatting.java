@@ -12,6 +12,8 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+import static java.time.format.DateTimeFormatter.ofPattern;
+
 public class Formatting {
     public static void main(String[] args) {
         NumberFormat formatter = new DecimalFormat("###,###.##");
@@ -29,9 +31,10 @@ public class Formatting {
         }
 
         DateTimeFormatter dtFormatter = DateTimeFormatter.ISO_DATE_TIME;
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dateFormatter = ofPattern("dd/MM/yyyy");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(Locale.ITALY);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.JAPAN);
+        DateTimeFormatter zonedDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm:ss a zZ").withLocale(Locale.US);
         var date = LocalDate.of(2024, 6, 1);
         var time = LocalTime.of(14, 30);
         var dateTime = LocalDateTime.of(date, time);
@@ -40,7 +43,7 @@ public class Formatting {
         System.out.println(dateFormatter.format(date)); // 01/06/2024
         System.out.println(timeFormatter.format(time)); // 14:30
         System.out.println(dateTimeFormatter.format(dateTime)); // 2024/06/01 14:30:00
-
+        System.out.println(zonedDateTimeFormatter.format(zonedDateTime)); // 2024/06/01 02:30:00 PM CEST+0200
 
 //        ResourceBundle resourceBundle = ResourceBundle.getBundle("chapter11.Formatting", Locale.getDefault());
 //        System.out.println(resourceBundle.getString("greeting")); // Hello, World!
