@@ -1,0 +1,25 @@
+Terminology
+    JAR - Java archive file
+
+    JPMS - Java Platform Module System
+
+    module: one or more packages + module-info.java (module declaration)
+
+    dependencies: one module relies on another module (arrow from dependent to dependency)
+
+module-info.java
+    - in the root of the module
+    - contains module declaration
+    - module name must not have dashes (usually includes periods; check automatic modules later for why)
+
+directives
+    - exports: makes a package accessible to other modules
+        - export to a specific module: exports packageName to moduleName;
+    - requires: specifies another module as dependency
+        - transitive requires: requires transitive moduleName;
+        - not allowed to repeat requires directive for the same module
+    - opens: allows a package to be used with reflection
+        - open to a specific module: opens packageName to moduleName;
+    - uses: references a service
+    - provides: makes a service available
+        - syntax: provides serviceInterface with implementationClass;
