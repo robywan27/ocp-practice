@@ -1,0 +1,46 @@
+java.util.concurrent package
+
+ExecutorService interface
+    create an instance of ExecutorService
+        Executors factory class
+            - single-thread
+                Executors.newSingleThreadExecutor()
+                Executors.newSingleThreadScheduledExecutor()
+            - pooled-thread
+                Executors.newFixedThreadPool(int nThreads)
+                Executors.newCachedThreadPool()
+                Executors.newScheduledThreadPool(int corePoolSize)
+                Executors.newVirtualThreadPerTaskExecutor()
+
+    methods
+        void execute(Runnable command)
+        Future<?> submit(Runnable task)
+        <T> Future<T> submit(Callable<T> task)
+        <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks)
+        <T> T invokeAny(Collection<? extends Callable<T>> tasks)
+
+    states
+        Active -> shutdown() -> Shutting Down (rejected new tasks) -> all tasks finished -> Shutdown
+            close() - automatically called in try-with-resources block (available since Java 19)
+            shutdown()
+            shutdownNow()
+
+    ScheduledExecutorService interface extends ExecutorService
+        create an instance
+            Executors.newSingleThreadScheduledExecutor()
+        methods
+            schedule(Runnable command, long delay, TimeUnit unit)
+            schedule(Callable<V> callable, long delay, TimeUnit unit)
+            scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit)
+            scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit
+
+Future interface
+    methods
+        boolean isDone()
+        boolean isCancelled()
+        boolean cancel(boolean mayInterruptIfRunning)
+        V get()
+        V get(long timeout, TimeUnit unit)
+
+    TimeUnit enum
+        NANOSECONDS, MICROSECONDS, MILLISECONDS, SECONDS, MINUTES, HOURS, DAYS

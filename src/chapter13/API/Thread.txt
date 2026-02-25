@@ -1,0 +1,60 @@
+Terminology
+    - thread: smallest unit of execution that can be scheduled by an operating system
+        - platform thread: thread provided by the underlying operating system - not efficient, useful mostly for CPU-intensive tasks
+            - carrier thread: platform thread that runs virtual threads (when they are not blocked)
+                - virtual thread: lightweight thread that is mapped to a carrier thread when needed to run; not tied to a OS thread - very efficient, useful for I/O-intensive tasks
+        - system thread: thread created by the JVM  that runs in the background of the app, such as the garbage collector
+        - user-defined thread: thread created by the app to perform tasks, such as the main thread
+            - if it's of type platform, it's not a daemon thread (unless explicitly defined as such)
+        - daemon thread: thread that runs in the background and does not prevent the JVM from exiting when the program finishes
+            - virtual threads are always daemon threads
+            - system threads such as garbage collection
+            - platform threads when defined as daemon threads
+        - thread priority: a numerical value associated with a thread that the scheduler uses to determine which thread to run
+            - goes from 1 (Thread.MIN_PRIORITY) to 10 (Thread.MAX_PRIORITY), with a default value of 5 (for virtual threads it is not possible to change it)
+    - process: a program in execution; group of associated threads that execute in the same shared environment
+        - shared environment: threads share the same memory space and can communicate directly with each other
+        - single-threaded process: process with only one thread
+        - multi-threaded process: process with more than one thread
+    - task : a unit of work that can be executed by a thread
+
+task representation
+    - Runnable
+        @FunctionalInterface
+        public interface Runnable {
+            void run();
+        }
+    - Callable
+        @FunctionalInterface
+        public interface Callable<V> {
+            V call() throws Exception;
+        }
+
+create and start a thread
+    factory methods - return builder object (recommended for Java 21+)
+        - platform threads
+            Thread.ofPlatform().start(runnable)
+        - virtual threads
+            Thread.ofVirtual().start(runnable)
+        - additional methods on builder
+            priority(int priority)
+            daemon(boolean on)
+            unstarted(runnable)
+    constructor
+        new Thread(runnable).start()
+
+other methods
+    - join() - tells main() to wait for the completion of the thread before proceeding
+    - run() - executes the task in the current thread; does not create a new thread
+
+thread lifecycle
+    NEW -> start() -> RUNNABLE  -> run() and completes/exception thrown -> TERMINATED
+        RUNNABLE -> resource requested -> BLOCKED -> resource acquired -> RUNNABLE
+        RUNNABLE -> wait() -> WAITING -> notify() or interrupt() -> RUNNABLE
+        RUNNABLE -> sleep() -> TIMED_WAITING -> sleep time elapses or interrupt() -> RUNNABLE
+
+    can query state on thread object: getState() -> Thread.State enum
+
+    exceptions
+        InterruptedException
+        IllegalThreadStateException
