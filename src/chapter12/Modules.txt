@@ -17,9 +17,26 @@ directives
         - export to a specific module: exports packageName to moduleName;
     - requires: specifies another module as dependency
         - transitive requires: requires transitive moduleName;
+            - e.g. animal <- dog <- puppy   - module dog must declare requires transitive; module puppy can just use requires dog or requires transitive
         - not allowed to repeat requires directive for the same module
     - opens: allows a package to be used with reflection
         - open to a specific module: opens packageName to moduleName;
     - uses: references a service
     - provides: makes a service available
         - syntax: provides serviceInterface with implementationClass;
+
+types of modules
+    - named module
+        - contains module declaration (module-info.java)
+        - appears on the module path instead of the classpath
+    - automatic module
+        - does not contain module-info.java
+        - appears on the module path
+        - it is a JAR placed on the module path
+        - Java automatically determines the module name from the JAR file name (removing version numbers and dashes)
+            - for example, my-library-1.0.jar becomes module name my.library
+    - unnamed module
+        - does not contain module-info.java
+        - appears on the classpath
+        - it is a regular JAR
+        - can read from the module path and classpath, so can access all other modules; but not other way around (modules on the module path cannot access the unnamed module)

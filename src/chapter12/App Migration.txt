@@ -1,0 +1,19 @@
+determining order of projects
+    - draw a graph of the projects and their dependencies
+    - projects with no dependencies are at the bottom
+    - order is not always unique
+
+bottom-up strategy - one by one starting from lowest level project: unnamed module on the classpath -> named module on the module path
+    - start with lowest level projects
+    - add a module-info.java to that project (add exports and requires directives)
+    - move this named module from the classpath to the module path
+    - ensure that any non-migrated projects stay as unnamed modules on the classpath
+    - repeat for the next level of projects until all projects are migrated to named modules on the module path
+
+top-down strategy - one by one starting from highest level project: automatic module on the module path -> named module
+    - place all projects on the module path
+    - pick the highest level project
+    - add a module-info.java to that project to convert the automatic module into a named module (add exports and requires directives)
+    - repeat for the next highest level project until you are done
+
+cyclic dependencies (when two or more modules depend on each other) do not compile

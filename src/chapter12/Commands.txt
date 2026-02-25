@@ -1,0 +1,54 @@
+compile
+    nonmodular code
+        javac -cp classpath -d directory classesToCompile
+            --class-path classpath
+            -classpath classpath
+    module
+        javac -p moduleFolderName -d directory classesToCompileIncludingModuleInfo
+            --module-path moduleFolderName
+
+run
+    nonmodular code
+        java -cp classpath package.className
+            --class-path classpath
+            -classpath classpath
+    module
+        java -p moduleFolderName -m moduleName/package.className
+            --module-path moduleFolderName --module moduleName/package.className
+
+package a module
+    jar -cvf moduleName/jarName -C directoryToPackage
+
+describe module
+    java -p moduleFolderName -d moduleName
+        --module-path moduleFolderName --describe-module moduleName
+    jar -f jarName -d
+        --file jarName --describe-module
+
+list (available) modules
+    java -p moduleFolderName --list-modules
+        --module-path moduleFolderName
+    java --list-modules
+
+show module resolution
+    java --show-module-resolution -p moduleFolderName -m moduleName
+        --module-path moduleFolderName --module moduleName
+
+view dependencies
+    jdeps moduleFolderName moduleName
+    jdeps -s --module-path moduleFolderName moduleName
+        -summary
+    jdeps --jdk-internals jarName
+        -jdkinternals
+
+create runtime jar
+    jlink -p moduleFolderName --add-modules moduleName --output directoryName
+        --module-path moduleFolderName
+
+create a self-contained Java application
+    module
+        jpackage -n name -p moduleFolderName -m moduleName/package.className [--app-version version] [--add-modules moduleName]
+            --name name --module-path moduleFolderName --module moduleName/package.className
+    nonmodular code
+        jpackage -n name -i myDir --main-class package.className --main-jar jarName [--app-version version]
+            --name name --input myDir

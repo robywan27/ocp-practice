@@ -1,12 +1,14 @@
-- service provider interface: specifies the interface (or abstract class) that defines the service
-    - exports
-- service locator: can find the classes that implement the service provider interface
-    - uses load() method from ServiceLoader class
-    - has uses directive to look up a service
-    - other directives: exports, requires (service provider interface)
-- consumer (client): module that obtains and uses a service (via service locator)
-    - requires (service provider interface, service locator)
-- service provider: module that implements the service provider interface
-    - provides directive: indicates that a module provides an implementation of a service
-        - provides serviceInterface with implementationClass;
-    - other directives: requires (service provider interface)
+a service is made up of an interface (service provider interface), any classes the interface references, and a way of looking up implementations of that interface (service locator)
+    - service provider interface: specifies the interface (or abstract class) that defines the service
+        - exports
+    - service locator: can find the classes that implement the service provider interface
+        - load() method from ServiceLoader class
+            - convert to stream of the interface you are loading: .stream().map(Provider::get)
+        - has uses directive (service provider interface) to look up a service
+        - other directives: exports, requires (service provider interface)
+    - consumer (client): module that obtains and uses a service (via service locator)
+        - requires (service provider interface, service locator)
+    - service provider: module that implements the service provider interface
+        - provides directive: indicates that a module provides an implementation of a service
+            - provides serviceInterface with implementationClass;
+        - other directives: requires (service provider interface)
