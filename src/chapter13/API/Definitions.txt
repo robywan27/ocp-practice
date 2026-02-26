@@ -1,7 +1,0 @@
-Terminology
-    - concurrency: the ability of a system to execute multiple threads and processes simultaneously
-    - thread scheduler: determines which thread should be currently executing (e.g. round-robin)
-    - context switch: the process of saving the state of a currently running thread and restoring the state of another thread to allow it to run
-    - asynchronous: thread executing main() doesn't wait for the completion of other threads; threads run independently of each other
-    - synchronous: thread executing main() waits (blocks) for the completion of other threads
-    - thread pool: a collection of pre-instantiated threads that can be reused to execute tasks

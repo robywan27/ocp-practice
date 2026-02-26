@@ -1,0 +1,8 @@
+Terminology
+    - liveness: ability of an app to be able to execute in a timely manner
+        3 types of liveness issues
+            - deadlock: occurs when two or more threads are blocked forever, each waiting on the other
+            - starvation: occurs when a single thread is perpetually denied access to a shared resource or lock; thread is still active but unable to complete its work
+                - livelock: occurs when two or more threads are blocked forever, although they are still active and trying to complete their task; often the result of these threads trying to resolve a deadlock
+    - race condition: occurs when two tasks that should be completed sequentially are completed at the same time
+        - may lead to invalid data; even failing is preferable instead

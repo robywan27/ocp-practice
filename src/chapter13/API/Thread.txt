@@ -17,6 +17,11 @@ Terminology
         - single-threaded process: process with only one thread
         - multi-threaded process: process with more than one thread
     - task : a unit of work that can be executed by a thread
+    - concurrency: the ability of a system to execute multiple threads and processes simultaneously
+    - thread scheduler: determines which thread should be currently executing (e.g. round-robin)
+    - context switch: the process of saving the state of a currently running thread and restoring the state of another thread to allow it to run
+    - asynchronous: thread executing main() doesn't wait for the completion of other threads; threads run independently of each other
+    - synchronous: thread executing main() waits (blocks) for the completion of other threads
 
 task representation
     - Runnable

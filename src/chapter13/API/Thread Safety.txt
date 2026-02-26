@@ -1,0 +1,101 @@
+Terminology
+    - thread-safety: property of an object that guarantees safe execution by multiple threads at the same time
+    - atomic: property of an operation to be carried out as a single unit of execution without any interference from another thread
+
+java.util.concurrent.atomic
+    atomic variables: useful for protecting a single variable
+
+    atomic classes
+        AtomicBoolean
+        AtomicInteger
+        AtomicLong
+
+    atomic methods
+        get()
+        set(type newValue) - equivalent to =
+        getAndSet(type newValue) - sets newValue and return oldValue
+        incrementAndGet() - equivalent to ++value
+        getAndIncrement() - value++
+        decrementAndGet() - --value
+        getAndDecrement() - value--
+
+    volatile modifier - ensures a thread does not see any intermediary values while an operation is performed (not applicable when an operator is two operations such as pre-/post-increment)
+
+synchronized
+    - monitor (lock): structure that supports multiple exclusion
+        - multiple exclusion: property that at most one thread is executing a segment of code at a given time
+
+    synchronized blocks: useful to protect a series of commands or call a method
+        synchronized(object) { // any Object can be used as a monitor, including this
+            // work work work
+        }
+
+        synchronized methods: synchronizes automatically on the object itself
+            on instance methods
+                synchronized void sing() {
+                    System.out.println("la la la");
+                }
+                    is equivalent to
+                void sing() {
+                    synchronized(this) {
+                        System.out.println("la la la");
+                    }
+                }
+            on static methods
+                static synchronized void dance() {
+                    System.out.println("dance");
+                }
+                    is equivalent to
+                static void dance() {
+                    synchronized(DanceLesson.class) {
+                        System.out.println("dance");
+                    }
+                }
+
+Lock framework - adds features not available to synchronized blocks
+    Lock interface
+
+    create instance of Lock
+        new ReentrantLock(); // class implementing Lock supporting mutual exclusion
+
+    methods
+        void lock()
+        void unlock()
+        boolean tryLock()
+        boolean tryLock(long timeout, TimeUnit unit)
+
+    usage: it is critical that you release a lock the same number of times it is acquired!
+        - usually used in try/finally block where lock() call happens in try block and unlock() in finally block
+        - tryLock() doesn't wait if another thread holds the lock -> common to use in if statement; call unlock() only when lock is obtained
+            if (lock.tryLock()) {
+                try {
+                    System.out.println("lock obtained");
+                }
+                finally {
+                    lock.unlock();
+                }
+            }
+        - a lock can be created with a fairness property
+
+    other implementing class
+        ReentrantReadWriteLock: contains separate locks for reading and writing
+            only one thread can hold the write lock at a time, while multiple threads can hold the read lock
+
+        methods
+            writeLock()
+                lock()
+                unlock()
+            readLock()
+                lock()
+                unlock()
+            isWriteLocked()
+            getReadLockCount()
+
+CyclicBarrier class
+    allows to perform complex multithreaded tasks such as making N number of threads perform steps in order
+
+    constructor
+        new CyclicBarrier(int limit);
+        new CyclicBarrier(int limit, Runnable runnable);
+
+    when limit is reached, all threads are released; CyclicBarrier can be used again for new set of waiting threads

@@ -1,0 +1,40 @@
+- parallel stream: capable of processing results concurrently using multiple threads
+- serial stream: processes the results in order, with one being processed at a time
+
+create an instance
+    - from an existing serial stream: collection.stream().parallel()
+    - from a Java collection: collection.parallelStream()
+
+parallel decomposition: process of taking a task, breaking it into smaller pieces that can be performed concurrently, and reassembling the results
+
+ordering results: forEachOrdered()
+
+parallel reduction: reduction operation applied to a parallel stream
+    - performing order-based tasks: findFirst(), limit(), skip()
+       order is preserved but less performance; consistent results with serial stream
+    - combining results
+        - reduce()
+            - to guarantee order: accumulator and combiner should produce the same result regardless of the order they are called in
+        - collect()
+            - Collector class defines a characteristics() method that returns a set of Collector.Characteristics attributes
+                - requirements for parallel reduction
+                    - stream is parallel
+                    - parameter of collect() has Characteristics.CONCURRENT characteristic
+                    - either stream is unordered or collector has Characteristics.UNORDERED characteristic
+                - static methods to retrieve collectors
+                    toConcurrentMap()
+                    groupingByConcurrent()
+
+avoid stateful lambda expressions in concurrent streams!
+
+generate random numbers: ThreadLocalRandom class
+    get an instance
+        ThreadLocalRandom.current()
+
+    methods for working with ints (and similar others for doubles and longs)
+        ints()
+        ints(lowestInclusive, highestExclusive)
+        ints(numberIntsToInclude)
+        ints(numberIntsToInclude, lowestInclusive, highestExclusive)
+        nextInt(highestExclusive)
+        nextInt(lowestInclusive, highestExclusive)
