@@ -7,7 +7,7 @@ create an instance
 
 parallel decomposition: process of taking a task, breaking it into smaller pieces that can be performed concurrently, and reassembling the results
 
-ordering results: forEachOrdered()
+ordering results (in the order in which they are defined in the stream): forEachOrdered()
 
 parallel reduction: reduction operation applied to a parallel stream
     - performing order-based tasks: findFirst(), limit(), skip()

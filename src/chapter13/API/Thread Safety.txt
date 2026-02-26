@@ -98,4 +98,7 @@ CyclicBarrier class
         new CyclicBarrier(int limit);
         new CyclicBarrier(int limit, Runnable runnable);
 
+    methods
+        await() - as each thread finishes it calls awaits(); once as many threads as specified limit have called this method the barrier is released
+
     when limit is reached, all threads are released; CyclicBarrier can be used again for new set of waiting threads
