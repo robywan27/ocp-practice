@@ -29,7 +29,7 @@
 Singleton class accessible only from a factory method:
 <br/>
 `System.console()`
->Console class may not be available in some environments -> check for null value before using it
+>Console class may not be available in some environments -> check for <b>null</b> value before using it
 
 ### Underlying streams
 - public Reader reader() - returns a Reader for reading from the console

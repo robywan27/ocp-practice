@@ -10,7 +10,7 @@
 
 ### Serialize a class
 - implement Serializable interface -> otherwise NotSerializableException is thrown
-- every instance member of the class must be serializable, transient or have null value
+- every instance member of the class must be serializable, transient or have null value (all primitive type and String are serializable)
 
 ### Classes for serialization/deserialization
 - ObjectInputStream - to deserialize an object
