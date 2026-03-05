@@ -6,7 +6,7 @@ package chapter2;
 *   2. if one of the values is integral and the other is floating-point, the integral value is automatically promoted
 *  to floating-point
 *   3. smaller data types than int (byte, short, char) are promoted to int any time they are used with a binary
-* arithmetic operator wit ha variable (as opposed to a value)
+* arithmetic operator with a variable (as opposed to a value)
 *   4. after promotion has occurred and all operands have the same data type, the result has the same type as its
 * promoted operands
 * */

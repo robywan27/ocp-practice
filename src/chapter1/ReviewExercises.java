@@ -11,7 +11,7 @@ public class ReviewExercises {
     private int numForks;
 
     public static void main(String[] args) {
-        int numKnives;
+        int numKnives; // compiles even if not initialized because it's just unused; the rule is valid only when the variable is accessed
         System.out.println("""
                 "# forks = " + numForks +
                 "# knives = " + numKnives +

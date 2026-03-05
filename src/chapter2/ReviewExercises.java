@@ -9,6 +9,7 @@ public class ReviewExercises {
         // Note: bitwise complement operator (~) can only be applied to integer values
         var a = ~3;
 //        var b = ~3.0;
+        short ear = 3;
 
 
         // Exercise 8
