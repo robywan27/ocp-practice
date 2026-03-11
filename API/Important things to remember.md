@@ -56,15 +56,29 @@
               &emsp; &emsp; // more complex stuff like other inner loop
           }<br/>
       } while (x < 5);
-  - a switch statement without break statement causes every branch after the one being evaluated to execute regardless of their case labels
-    >   String instrument = "violin";</br>
-        final String CELLO = "cello";</br>
-        int p = -1;</br>
-        switch (instrument) {</br>
-           &emsp; &emsp; case "bass" : break;</br>
-           &emsp; &emsp; case CELLO : p++;</br>
-           &emsp; &emsp; default: p++;</br>
-           &emsp; &emsp; case "VIOLIN": p++;</br>
-           &emsp; &emsp; case "viola" : ++p; break;</br>
-        }</br>
-        System.out.print(p); // 2
+- a switch statement without break statement causes every branch after the one being evaluated to execute regardless of their case labels
+    > String instrument = "violin";</br>
+      final String CELLO = "cello";</br>
+      int p = -1;</br>
+      switch (instrument) {</br>
+         &emsp; &emsp; case "bass" : break;</br>
+         &emsp; &emsp; case CELLO : p++;</br>
+         &emsp; &emsp; default: p++;</br>
+         &emsp; &emsp; case "VIOLIN": p++;</br>
+         &emsp; &emsp; case "viola" : ++p; break;</br>
+      }</br>
+      System.out.print(p); // 2
+
+# Chapter 4
+- Java automatically adjusts for daylight saving time
+> var zone = ZoneId.of("US/Eastern");<br/>
+var date = _______________________________;<br/>
+var time = LocalTime.of(2, 15);<br/>
+var z = ZonedDateTime.of(date, time, zone);<br/><br/>
+> LocalDate.of(2028, 3, 12) and LocalDate.of(2028, 11, 5) are both valid dates;
+- when dealing with timezones it's best to convert to GMT by subtracting the time zone; subtracting a negative time zone is the same as adding it
+> 2025-08-28T05:00 GMT-04:00 is equivalent to 9:00 GMT<br/>
+> 2025-08-28T09:00 GMT-06:00 is equivalent to 15:00 GMT<br/>
+- when comparing two zoned datetimes on day of daylight saving time change, ChronoUnit.HOURS.between(dt1, dt2) returns 1 even though dt1 and dt2 are 2 hours apart (check exercise 20 of review questions)
+
+# Chapter 5

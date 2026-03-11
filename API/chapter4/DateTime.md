@@ -1,5 +1,7 @@
 > import java.time.*
 
+> Dates and times are immutable
+
 ## Initialization - static factory methods
 | Method             | Type                                                                                                           | Notes                                       |
 |--------------------|----------------------------------------------------------------------------------------------------------------|---------------------------------------------|
@@ -107,7 +109,7 @@
 > toInstant()
 
 ## Daylight Saving Time
-> In spring, the clock moves forward and we lose an hour; in fall, the clock moves backward and we gain an hour
+> In spring, the clock moves forward ("spring forward") and we lose an hour; in fall, the clock moves backward ("fall back") and we gain an hour
 
 | Normal day            | March changeover      | November changeover           |
 |-----------------------|-----------------------|-------------------------------|
@@ -115,3 +117,21 @@
 | 2:00 a.m. - 3:00 a.m. | 3:00 a.m. - 4:00 a.m. | 1:00 a.m. - 1:59 a.m. (again) |
 | 3:00 a.m. - 4:00 a.m. |                       | 2:00 a.m. - 4:00 a.m.         |
 
+> Java can automatically adjust for daylight saving time
+
+> var zone = ZoneId.of("US/Eastern");<br/>
+var date = _______________________________;<br/>
+var time = LocalTime.of(2, 15);<br/>
+var z = ZonedDateTime.of(date, time, zone);<br/><br/>
+> LocalDate.of(2028, 3, 12) and LocalDate.of(2028, 11, 5) are both valid dates; 
+> - the first one will be adjusted to 3:15 a.m.
+> - the second one will be adjusted to 1:15 a.m.
+
+> creating a non-existing time such as 2:15 a.m. on the day of the spring changeover rolls forward to 3:15 a.m.
+> var date = LocalDate.of(2028, Month.MARCH, 12);<br/>
+var time = LocalTime.of(1, 30);<br/>
+var zone = ZoneId.of("US/Eastern");<br/>
+var dateTime1 = ZonedDateTime.of(date, time, zone);<br/>
+var dateTime2 = dateTime1.plus(1, ChronoUnit.HOURS);
+int hour = dateTime2.getHour(); // 3
+long diff = ChronoUnit.HOURS.between(dateTime1, dateTime2); // 1 even though dateTime1 and dateTime2 are 2 hours apart
