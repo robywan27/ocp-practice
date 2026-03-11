@@ -47,6 +47,34 @@ public class ReviewExercises {
         return DayOfWeek.FRIDAY;
     }
 
+    private void exercise16WithArrow() {
+        final char a = 'A', e = 'E';
+        char grade = 'B';
+        String s = switch (grade) {
+//            default: ""; // does not compile
+            default -> "";
+            case a -> "";
+            case 'B', 'C' -> "great ";
+            case 'D' ->      "good ";
+            case e -> "";
+            case 'F' ->      "not good ";
+        };
+    }
+    private void exercise16WithColon() {
+        final char a = 'A', e = 'E';
+        char grade = 'B';
+        String s = switch (grade) {
+//            default: ""; // does not compile
+            default: {
+                 yield ""; }
+            case a: { yield ""; }
+            case 'B', 'C': { yield "great "; }
+            case 'D': { yield"good "; }
+            case e: { yield ""; }
+            case 'F': { yield "not good ";}
+        };
+    }
+
 
     /*exercise 17*/
     private static void countAttendees() {

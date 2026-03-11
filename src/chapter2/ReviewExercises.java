@@ -11,6 +11,9 @@ public class ReviewExercises {
 //        var b = ~3.0;
         short ear = 3;
 
+        // Exercise 7
+        long goat = 2;
+        goat -= 1.0; // goat is promoted to double, but then goat is automatically cast to long
 
         // Exercise 8
         int pig = 2;

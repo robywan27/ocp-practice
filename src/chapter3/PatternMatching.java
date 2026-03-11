@@ -48,6 +48,48 @@ public class PatternMatching {
             return;
     }
 
+    void printDetailsWithIf(Number height) {
+        if (height instanceof Integer i)
+            System.out.println("Rounded: " + i);
+        else if (height instanceof Double d)
+            System.out.println("Precise: " + d);
+        else if (height instanceof Number n)
+            System.out.println("Unknown: " + n);
+    }
+
+    void printDetailsWithSwitch(Number height) {
+        String message = switch (height) {
+            case Integer i -> "Rounded: " + i;
+            case Double d -> "Precise: " + d;
+            case Number n -> "Unknown: " + n;
+        };
+        System.out.println(message);
+    }
+
+    void printDetailsWithIfAndConditional(Number height) {
+        if (height instanceof Integer i && i > 10)
+            System.out.println("Greater than 10");
+        else if (height instanceof Integer i)
+            System.out.println("Other integers");
+        else if (height instanceof Double d && d <= 15.5)
+            System.out.println("Smaller equal to 15.5");
+        else if (height instanceof Double d)
+            System.out.println("Other floating-point numbers");
+        else if (height instanceof Number n)
+            System.out.println("Unknown numbers");
+    }
+
+    void printDetailsWithSwitchAndGuard(Number height) {
+        String message = switch (height) {
+            case Integer i when i > 10 -> "Greater than 10";
+            case Integer i -> "Other integers";
+            case Double d when d <= 15.5 -> "Smaller equal to 15.5";
+            case Double d -> "Other floating-point numbers";
+            case Number n -> "Unknown numbers";
+        };
+        System.out.println(message);
+    }
+
     public static void main(String[] args) {
         // pattern variable must be a subtype of the variable on the left side of the expression
         Integer value = 2;
