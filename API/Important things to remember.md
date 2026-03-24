@@ -82,3 +82,28 @@ var z = ZonedDateTime.of(date, time, zone);<br/><br/>
 - when comparing two zoned datetimes on day of daylight saving time change, ChronoUnit.HOURS.between(dt1, dt2) returns 1 even though dt1 and dt2 are 2 hours apart (check exercise 20 of review questions)
 
 # Chapter 5
+- non-public constructor for a public class may disallow instantiation of the class (from subclasses, outside its package or at all)
+- instance/static initializers aren't executed if the class is not constructed
+
+# Chapter 6
+- double check that methods in parent class aren't defined private. In that case there is no overriding nor hiding nor overloading
+- inheritance rules:
+  - protected (public/package) methods that expose private fields of the superclass allow subclasses to access/modify those fields, while these subclasses can't access those fields directly
+  - overriding methods in subclasses completely replace the implementation of the superclass method, regardless of the type of the reference used to call the method
+  - overloaded methods in subclasses don't replace the implementation of the superclass method, but rather add to it
+  - hiding static methods or fields doesn't replace the implementation of the superclass method/field; the type of the reference used to call the method/field determines which implementation is used
+- object initialization flow is a bit misleading in the book regarding the order of execution of constructors and instance initializers; the correct order is:
+  1. subclass constructor calls immediately superclass constructor
+  2. instance initializers are executed in the superclass
+  3. superclass constructor body is executed
+  4. instance initializers are executed in the subclass
+  5. subclass constructor body is executed
+- if a subclass constructor doesn't explicitly call a superclass constructor and the superclass doesn't have a no-arg constructor, the constructor in the subclass won't compile, not the superclass constructor
+> class Reptile {<br/>
+&emsp; &emsp; public Reptile(int hatch) {}<br/>
+     }<br/>
+7:  public class Lizard extends Reptile {<br/>
+9:     &emsp; &emsp; public Lizard(int hatch) {} // doesn't compile<br/>
+13:    &emsp; &emsp; public static void main(String[] args) {<br/>
+14:       &emsp; &emsp;&emsp; &emsp;  var reptile = new Lizard(1);<br/>
+16:    } }
