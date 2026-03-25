@@ -1,3 +1,9 @@
+## Special syntax
+| What           | Description                           | Syntax                           |
+|----------------|---------------------------------------|----------------------------------|
+| default method | access method from implementing class | InterfaceName.super.methodName() |
+| static method  | access method from implementing class | InterfaceName.methodName()       |
+
 ## Implicit modifiers
 | What                       | Modifier            |
 |----------------------------|---------------------|
@@ -6,12 +12,6 @@
 | Interface field (constant) | public static final |
 | Default method             | public              |
 | Static method              | public              |
-
-## Special syntax
-| What           | Description                           | Syntax                           |
-|----------------|---------------------------------------|----------------------------------|
-| default method | access method from implementing class | InterfaceName.super.methodName() |
-| static method  | access method from implementing class | InterfaceName.methodName()       |
 
 ## Rules
 | MUST                                                         |                                                                                                                   | CANNOT             |                                                                                                                                                                                                            | CAN                            |                               |
