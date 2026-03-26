@@ -17,3 +17,9 @@ public class Park {
         System.out.println(ride.price);
     }
 }
+
+class Tester {
+    public static void main(String[] args) {
+        Park.Ride ride = new Park.Ride();
+    }
+}
