@@ -68,17 +68,18 @@
          &emsp; &emsp; case "viola" : ++p; break;</br>
       }</br>
       System.out.print(p); // 2
+- in a switch statement/expression, if the variable being matched is null, unless a case null is specified, a NullPointerException is thrown at runtime
 
 # Chapter 4
 - Java automatically adjusts for daylight saving time
-> var zone = ZoneId.of("US/Eastern");<br/>
-var date = _______________________________;<br/>
-var time = LocalTime.of(2, 15);<br/>
-var z = ZonedDateTime.of(date, time, zone);<br/><br/>
-> LocalDate.of(2028, 3, 12) and LocalDate.of(2028, 11, 5) are both valid dates;
+    > var zone = ZoneId.of("US/Eastern");<br/>
+    var date = _______________________________;<br/>
+    var time = LocalTime.of(2, 15);<br/>
+    var z = ZonedDateTime.of(date, time, zone);<br/><br/>
+    LocalDate.of(2028, 3, 12) and LocalDate.of(2028, 11, 5) are both valid dates;
 - when dealing with timezones it's best to convert to GMT by subtracting the time zone; subtracting a negative time zone is the same as adding it
-> 2025-08-28T05:00 GMT-04:00 is equivalent to 9:00 GMT<br/>
-> 2025-08-28T09:00 GMT-06:00 is equivalent to 15:00 GMT<br/>
+    > 2025-08-28T05:00 GMT-04:00 is equivalent to 9:00 GMT<br/>
+    > 2025-08-28T09:00 GMT-06:00 is equivalent to 15:00 GMT<br/>
 - when comparing two zoned datetimes on day of daylight saving time change, ChronoUnit.HOURS.between(dt1, dt2) returns 1 even though dt1 and dt2 are 2 hours apart (check exercise 20 of review questions)
 
 # Chapter 5
@@ -99,11 +100,43 @@ var z = ZonedDateTime.of(date, time, zone);<br/><br/>
   4. instance initializers are executed in the subclass
   5. subclass constructor body is executed
 - if a subclass constructor doesn't explicitly call a superclass constructor and the superclass doesn't have a no-arg constructor, the constructor in the subclass won't compile, not the superclass constructor
-> class Reptile {<br/>
-&emsp; &emsp; public Reptile(int hatch) {}<br/>
-     }<br/>
-7:  public class Lizard extends Reptile {<br/>
-9:     &emsp; &emsp; public Lizard(int hatch) {} // doesn't compile<br/>
-13:    &emsp; &emsp; public static void main(String[] args) {<br/>
-14:       &emsp; &emsp;&emsp; &emsp;  var reptile = new Lizard(1);<br/>
-16:    } }
+    > class Reptile {<br/>
+    &emsp; &emsp; public Reptile(int hatch) {}<br/>
+         }<br/>
+      public class Lizard extends Reptile {<br/>
+         &emsp; &emsp; public Lizard(int hatch) {} // doesn't compile<br/>
+        &emsp; &emsp; public static void main(String[] args) {<br/>
+           &emsp; &emsp;&emsp; &emsp;  var reptile = new Lizard(1);<br/>
+        } }
+
+# Chapter 7
+- any subclass that implements a method of an interface must declare it public
+- polymorphism rule with method arguments: you can pass any subtype or the type itself (unless it's abstract); this is the opposite of the polymorphism rules for assignments
+- careful on which line the compilation error is thrown
+    > interface HasExoskeleton {</br>
+    &emsp; &emsp; double size = 2.0f;</br>
+    &emsp; &emsp; abstract int getNumberOfSections();</br>
+    }<br/>
+    public class Beetle implements HasExoskeleton { // compilation error happens here</br>
+    &emsp; &emsp; int getNumberOfSections(int count) { return 1; } // here it compiles<br/>
+    }
+- private constructors can be accessed within the class, e.g. if main is in the class
+- nested records are implicitly static, so they cannot access instance members of the enclosing class. An instance method in the nested record can however access both instance and static members of the nested record itself
+- be careful of anonymous classes declarations
+    > var g = new Ghost().new Spirit() {}; // anonymous class!<br/>
+      var g = new Ghost().new Spirit(); // regular instantiation
+- a static method cannot be overridden by a method of same signature but non-static and other way around
+- when a record/enum is pattern matched in a switch, double-check that case branches compile (e.g. double doesn't match Double and doesn't compile). Other than checking validity of patterns don't forget to check if a branch dominates other branches!
+    > case Family(var a, var b) -˃ "1";<br/>
+      case Family(Gorilla c, Gorilla (int d, Double e)) -˃ "2"; // is dominated by previous branch and doesn't compile
+- a static method can instantiate a non-static inner class by creating an instance of the enclosing class first; directly instantiating the inner class doesn't compile
+    > public class Lion {<br/>
+  &emsp; &emsp; class Cub {}<br/>
+  &emsp; &emsp; static class Den {}<br/>
+  &emsp; &emsp; static void rest() {<br/>
+  &emsp; &emsp; &emsp; &emsp; Lion.Cub cub = new Lion().new Cub();<br/>
+    } }
+- if a sealed class lists a class in its permits clause but that class doesn't extend the sealed class, the compilation error is thrown in the sealed class, not in the non-complying subclass
+    > public sealed class Mammal permits Dog {} // compilation error happens here<br/>
+      public final class Dog {} // here it compiles
+
